@@ -16,6 +16,10 @@ class HomeVC: UIViewController {
         galleryCollectionView.delegate = self
         galleryCollectionView.dataSource = self
     }
+    
+    override var prefersStatusBarHidden:Bool{
+        return true
+    }
 }
 
 
@@ -40,9 +44,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource ,UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        let cell = galleryCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) 
-        print(indexPath.row)
-        
+        let cell = galleryCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         return cell 
     }
     
@@ -53,11 +55,18 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource ,UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+       
+        let numberOfColumns: CGFloat =  2
+        let width = galleryCollectionView.frame.size.width
+        let xInsets: CGFloat = 10
+        let cellSpacing: CGFloat = 5
         
-        let padding: CGFloat =  10.0
-        let collectionViewSize = galleryCollectionView.frame.size.width - padding
         
-        return CGSize(width: collectionViewSize/2, height: collectionViewSize/2)
+        return CGSize(width: (width / numberOfColumns) - (xInsets + cellSpacing), height: (width / numberOfColumns) - (xInsets + cellSpacing))
         
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+        performSegue(withIdentifier: "gotoRestaurants", sender: self)
     }
 }
