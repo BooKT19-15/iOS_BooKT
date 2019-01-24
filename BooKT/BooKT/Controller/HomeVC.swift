@@ -13,6 +13,7 @@ class HomeVC: UIViewController {
     @IBOutlet weak var galleryCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         galleryCollectionView.delegate = self
         galleryCollectionView.dataSource = self
     }
@@ -21,8 +22,6 @@ class HomeVC: UIViewController {
         return true
     }
 }
-
-
 
 
 
@@ -56,6 +55,18 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource ,UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let numberOfColumns: CGFloat =  3
+            let width = galleryCollectionView.frame.size.width
+            let xInsets: CGFloat = 10
+            let cellSpacing: CGFloat = 5
+            
+            
+            return CGSize(width: (width / numberOfColumns) - (xInsets + cellSpacing), height:250.0)
+            
+            
+        }
+        
         let numberOfColumns: CGFloat =  2
         let width = galleryCollectionView.frame.size.width
         let xInsets: CGFloat = 10

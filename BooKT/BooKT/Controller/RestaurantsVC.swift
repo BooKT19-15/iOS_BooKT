@@ -13,9 +13,10 @@ class RestaurantsVC: UIViewController {
     @IBOutlet weak var RestaurantsCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         RestaurantsCollectionView.dataSource = self
         RestaurantsCollectionView.delegate = self
-        RestaurantsCollectionView.register(UINib(nibName: "RestaurantCell", bundle: nil), forCellWithReuseIdentifier: "RestaurantsCell")
+        RestaurantsCollectionView.register(UINib(nibName: "RestaurantsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RestaurantCell")
         
     }
     
@@ -34,7 +35,7 @@ extension RestaurantsVC: UICollectionViewDelegate, UICollectionViewDataSource ,U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-    let cell = RestaurantsCollectionView.dequeueReusableCell(withReuseIdentifier: "RestaurantsCell", for: indexPath)
+    let cell = RestaurantsCollectionView.dequeueReusableCell(withReuseIdentifier: "RestaurantCell", for: indexPath)
         //cell.backgroundColor = UIColor.blue
         return cell
     }
@@ -46,11 +47,21 @@ extension RestaurantsVC: UICollectionViewDelegate, UICollectionViewDataSource ,U
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let padding: CGFloat =  10.0
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let numberOfColumns: CGFloat =  2
+            let width = RestaurantsCollectionView.frame.size.width
+            let xInsets: CGFloat = 10
+            let cellSpacing: CGFloat = 5
+            
+            
+            return CGSize(width: (width / numberOfColumns) - (xInsets + cellSpacing), height:200.0)
+            
+            
+        }
+        let padding: CGFloat =  8.0
         let collectionViewSize = RestaurantsCollectionView.frame.size.width - padding
         
-        return CGSize(width: collectionViewSize - 20 , height: 120.0)
+        return CGSize(width: collectionViewSize  , height: 130.0)
         
     }
 }
