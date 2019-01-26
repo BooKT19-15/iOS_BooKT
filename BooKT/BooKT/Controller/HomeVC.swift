@@ -16,13 +16,15 @@ class HomeVC: UIViewController {
         
         galleryCollectionView.delegate = self
         galleryCollectionView.dataSource = self
+        galleryCollectionView.contentInsetAdjustmentBehavior = .never
+       
+        
     }
     
     override var prefersStatusBarHidden:Bool{
         return true
     }
 }
-
 
 
 
@@ -44,6 +46,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource ,UICollec
         
         
         let cell = galleryCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.layer.cornerRadius = 8
         return cell 
     }
     
@@ -55,29 +58,28 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource ,UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
        
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            let numberOfColumns: CGFloat =  3
-            let width = galleryCollectionView.frame.size.width
-            let xInsets: CGFloat = 10
-            let cellSpacing: CGFloat = 5
-            
-            
-            return CGSize(width: (width / numberOfColumns) - (xInsets + cellSpacing), height:250.0)
-            
-            
-        }
+        
         
         let numberOfColumns: CGFloat =  2
         let width = galleryCollectionView.frame.size.width
         let xInsets: CGFloat = 10
         let cellSpacing: CGFloat = 5
         
+        // Check if it's iPad
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return CGSize(width: (width / 3) - (xInsets + cellSpacing), height:250.0)
+        }
         
         return CGSize(width: (width / numberOfColumns) - (xInsets + cellSpacing), height: (width / numberOfColumns) - (xInsets + cellSpacing))
         
     }
+    
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
         performSegue(withIdentifier: "gotoRestaurants", sender: self)
     }
 }
+

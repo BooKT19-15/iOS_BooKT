@@ -16,6 +16,7 @@ class RestaurantsVC: UIViewController {
        
         RestaurantsCollectionView.dataSource = self
         RestaurantsCollectionView.delegate = self
+        RestaurantsCollectionView.contentInsetAdjustmentBehavior = .never
         RestaurantsCollectionView.register(UINib(nibName: "RestaurantsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RestaurantCell")
         
     }
@@ -37,6 +38,7 @@ extension RestaurantsVC: UICollectionViewDelegate, UICollectionViewDataSource ,U
         
     let cell = RestaurantsCollectionView.dequeueReusableCell(withReuseIdentifier: "RestaurantCell", for: indexPath)
         //cell.backgroundColor = UIColor.blue
+        cell.layer.cornerRadius = 8
         return cell
     }
     
