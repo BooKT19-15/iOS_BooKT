@@ -24,6 +24,7 @@ class HomeVC: UIViewController {
     override var prefersStatusBarHidden:Bool{
         return true
     }
+    
 }
 
 
@@ -45,7 +46,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource ,UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        let cell = galleryCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = galleryCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! galleryCell
         cell.layer.cornerRadius = 8
         return cell 
     }
@@ -81,5 +82,6 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource ,UICollec
     
         performSegue(withIdentifier: "gotoRestaurants", sender: self)
     }
+    
 }
 

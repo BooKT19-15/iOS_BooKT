@@ -10,4 +10,5 @@ import UIKit
 
 class galleryCell: UICollectionViewCell {
     
+    @IBOutlet weak var label: UILabel!
 }
