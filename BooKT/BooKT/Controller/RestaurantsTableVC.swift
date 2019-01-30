@@ -25,8 +25,9 @@ class RestaurantsTableVC: UITableViewController {
         if (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad)
         {
             registerCellForIpad()
-        }
+        }else{
             registerCellForIphone()
+        }
     }
     
     
