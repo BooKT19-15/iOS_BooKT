@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
           window = UIWindow()
         window?.rootViewController = HomeCollectionVC(collectionViewLayout: StrecheyHeader())
-        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
-         window?.rootViewController = viewController
+//        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
+//         window?.rootViewController = viewController
 
         // Override point for customization after application launch.
         FirebaseApp.configure()

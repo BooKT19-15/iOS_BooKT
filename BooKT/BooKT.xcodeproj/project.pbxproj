@@ -23,6 +23,15 @@
 		DCDAFEF32201CB1E0044D216 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCDAFEF12201CB1E0044D216 /* HomeCell.xib */; };
 		DCDAFEF52201E0130044D216 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDAFEF42201E0130044D216 /* NavigationController.swift */; };
 		DCDAFEF72201E30D0044D216 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDAFEF62201E30D0044D216 /* TabBarController.swift */; };
+		DCDCBBBE22087D870005A759 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDCBBBC22087D870005A759 /* MapTableViewCell.swift */; };
+		DCDCBBBF22087D870005A759 /* MapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCDCBBBD22087D870005A759 /* MapTableViewCell.xib */; };
+		DCDCBBC222087F720005A759 /* GalleryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDCBBC022087F720005A759 /* GalleryTableViewCell.swift */; };
+		DCDCBBC322087F720005A759 /* GalleryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCDCBBC122087F720005A759 /* GalleryTableViewCell.xib */; };
+		DCE6433222082C3B00F24D8F /* RestaurantTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6433122082C3B00F24D8F /* RestaurantTableVC.swift */; };
+		DCE64337220860C100F24D8F /* SectionsMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE64335220860C100F24D8F /* SectionsMenuTableViewCell.swift */; };
+		DCE64338220860C100F24D8F /* SectionsMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCE64336220860C100F24D8F /* SectionsMenuTableViewCell.xib */; };
+		DCE6433B220873A400F24D8F /* MenuiPhoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE64339220873A400F24D8F /* MenuiPhoneTableViewCell.swift */; };
+		DCE6433C220873A400F24D8F /* MenuiPhoneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCE6433A220873A400F24D8F /* MenuiPhoneTableViewCell.xib */; };
 		DCE944872201AACA00839523 /* HomeCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE944862201AACA00839523 /* HomeCollectionVC.swift */; };
 		DCE944892201ABCB00839523 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE944882201ABCB00839523 /* HeaderView.swift */; };
 		DCE9448B2201AC1000839523 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9448A2201AC1000839523 /* Extensions+UIView.swift */; };
@@ -50,6 +59,15 @@
 		DCDAFEF12201CB1E0044D216 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		DCDAFEF42201E0130044D216 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		DCDAFEF62201E30D0044D216 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = Controller/TabBarController.swift; sourceTree = "<group>"; };
+		DCDCBBBC22087D870005A759 /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
+		DCDCBBBD22087D870005A759 /* MapTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapTableViewCell.xib; sourceTree = "<group>"; };
+		DCDCBBC022087F720005A759 /* GalleryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryTableViewCell.swift; sourceTree = "<group>"; };
+		DCDCBBC122087F720005A759 /* GalleryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryTableViewCell.xib; sourceTree = "<group>"; };
+		DCE6433122082C3B00F24D8F /* RestaurantTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableVC.swift; sourceTree = "<group>"; };
+		DCE64335220860C100F24D8F /* SectionsMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsMenuTableViewCell.swift; sourceTree = "<group>"; };
+		DCE64336220860C100F24D8F /* SectionsMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionsMenuTableViewCell.xib; sourceTree = "<group>"; };
+		DCE64339220873A400F24D8F /* MenuiPhoneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuiPhoneTableViewCell.swift; path = iPhone/MenuiPhoneTableViewCell.swift; sourceTree = "<group>"; };
+		DCE6433A220873A400F24D8F /* MenuiPhoneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MenuiPhoneTableViewCell.xib; path = iPhone/MenuiPhoneTableViewCell.xib; sourceTree = "<group>"; };
 		DCE944862201AACA00839523 /* HomeCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionVC.swift; sourceTree = "<group>"; };
 		DCE944882201ABCB00839523 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		DCE9448A2201AC1000839523 /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
@@ -124,6 +142,7 @@
 		DCA7CAF321F5B382003FD0FD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DCE6433122082C3B00F24D8F /* RestaurantTableVC.swift */,
 				DCDAFEF42201E0130044D216 /* NavigationController.swift */,
 				DCE944862201AACA00839523 /* HomeCollectionVC.swift */,
 				DCBB338B22003275003E5CA3 /* RestaurantsTableVC.swift */,
@@ -142,6 +161,14 @@
 				DCE9448C2201AD6B00839523 /* StrecheyHeader.swift */,
 				DCDAFEF02201CB1E0044D216 /* HomeCell.swift */,
 				DCDAFEF12201CB1E0044D216 /* HomeCell.xib */,
+				DCE64335220860C100F24D8F /* SectionsMenuTableViewCell.swift */,
+				DCE64336220860C100F24D8F /* SectionsMenuTableViewCell.xib */,
+				DCE64339220873A400F24D8F /* MenuiPhoneTableViewCell.swift */,
+				DCE6433A220873A400F24D8F /* MenuiPhoneTableViewCell.xib */,
+				DCDCBBBC22087D870005A759 /* MapTableViewCell.swift */,
+				DCDCBBBD22087D870005A759 /* MapTableViewCell.xib */,
+				DCDCBBC022087F720005A759 /* GalleryTableViewCell.swift */,
+				DCDCBBC122087F720005A759 /* GalleryTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -244,6 +271,10 @@
 				DC22F8CC21EF647200D51DCB /* GoogleService-Info.plist in Resources */,
 				DCBB339422003D3F003E5CA3 /* iPhoneRestaurantTableViewCell.xib in Resources */,
 				DCBB339022003987003E5CA3 /* iPadRestaurantTableViewCell.xib in Resources */,
+				DCE6433C220873A400F24D8F /* MenuiPhoneTableViewCell.xib in Resources */,
+				DCE64338220860C100F24D8F /* SectionsMenuTableViewCell.xib in Resources */,
+				DCDCBBBF22087D870005A759 /* MapTableViewCell.xib in Resources */,
+				DCDCBBC322087F720005A759 /* GalleryTableViewCell.xib in Resources */,
 				DC53A8AA21EF32AF009F7607 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,15 +341,20 @@
 			files = (
 				DCE944872201AACA00839523 /* HomeCollectionVC.swift in Sources */,
 				DCBB338F22003987003E5CA3 /* iPadRestaurantTableViewCell.swift in Sources */,
+				DCDCBBBE22087D870005A759 /* MapTableViewCell.swift in Sources */,
 				DC57BB8221FC869700A48087 /* SearchVC.swift in Sources */,
 				DCBB338C22003275003E5CA3 /* RestaurantsTableVC.swift in Sources */,
+				DCE6433B220873A400F24D8F /* MenuiPhoneTableViewCell.swift in Sources */,
 				DC53A8A521EF32AF009F7607 /* AppDelegate.swift in Sources */,
 				DCBB339322003D3F003E5CA3 /* iPhoneRestaurantTableViewCell.swift in Sources */,
 				DCDAFEF52201E0130044D216 /* NavigationController.swift in Sources */,
+				DCDCBBC222087F720005A759 /* GalleryTableViewCell.swift in Sources */,
 				DCE944892201ABCB00839523 /* HeaderView.swift in Sources */,
 				DCE9448B2201AC1000839523 /* Extensions+UIView.swift in Sources */,
+				DCE6433222082C3B00F24D8F /* RestaurantTableVC.swift in Sources */,
 				DCDAFEF72201E30D0044D216 /* TabBarController.swift in Sources */,
 				DCDAFEF22201CB1E0044D216 /* HomeCell.swift in Sources */,
+				DCE64337220860C100F24D8F /* SectionsMenuTableViewCell.swift in Sources */,
 				DCE9448D2201AD6B00839523 /* StrecheyHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -190,5 +190,6 @@ class RestaurantsTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //this a comment that will remind me to dismiss the view using tab bar button
         //self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "gotoRestaurant", sender: self)
     }
 }

@@ -95,7 +95,9 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "gotoRestaurants", sender: self)
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NavigationController") as! NavigationController
+               // present.rootViewController = viewController
+        present(viewController, animated: true, completion: nil)
     }
     
     
