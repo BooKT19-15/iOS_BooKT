@@ -38,11 +38,16 @@ class RestaurantTableVC: UITableViewController {
     
     func animateButton(){
         
-        UIView.animate(withDuration: 2, animations: {
+        UIView.animate(withDuration: 3, animations: {
             self.reserveButton.backgroundColor = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)
             self.reserveButton.tintColor = .white
         }, completion: nil)
         
+    }
+    
+    
+    @IBAction func reserveButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "gotoReserve", sender: self)
     }
     func setupTableview(){
         //galleryCell

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11624BCE7E5A841E7988D760 /* Pods_BooKT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0989D06DDA03C503B622BDAA /* Pods_BooKT.framework */; };
+		DC1BE69D220B4C140091AEE8 /* ConfirmationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BE69C220B4C140091AEE8 /* ConfirmationVC.swift */; };
 		DC22F8CC21EF647200D51DCB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC22F8CB21EF647200D51DCB /* GoogleService-Info.plist */; };
 		DC53A8A521EF32AF009F7607 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53A8A421EF32AF009F7607 /* AppDelegate.swift */; };
 		DC53A8AA21EF32AF009F7607 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC53A8A821EF32AF009F7607 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 		DCBB339022003987003E5CA3 /* iPadRestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCBB338E22003987003E5CA3 /* iPadRestaurantTableViewCell.xib */; };
 		DCBB339322003D3F003E5CA3 /* iPhoneRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB339122003D3F003E5CA3 /* iPhoneRestaurantTableViewCell.swift */; };
 		DCBB339422003D3F003E5CA3 /* iPhoneRestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCBB339222003D3F003E5CA3 /* iPhoneRestaurantTableViewCell.xib */; };
+		DCBCC26F220ACF5D00D9D649 /* ReservationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBCC26E220ACF5D00D9D649 /* ReservationVC.swift */; };
 		DCDAFEF22201CB1E0044D216 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDAFEF02201CB1E0044D216 /* HomeCell.swift */; };
 		DCDAFEF32201CB1E0044D216 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCDAFEF12201CB1E0044D216 /* HomeCell.xib */; };
 		DCDAFEF52201E0130044D216 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDAFEF42201E0130044D216 /* NavigationController.swift */; };
@@ -42,6 +44,7 @@
 		0989D06DDA03C503B622BDAA /* Pods_BooKT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BooKT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48990C34F2EFF42AB459A694 /* Pods-BooKT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BooKT.release.xcconfig"; path = "Pods/Target Support Files/Pods-BooKT/Pods-BooKT.release.xcconfig"; sourceTree = "<group>"; };
 		562BA65D2E4987EE31001431 /* Pods-BooKT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BooKT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BooKT/Pods-BooKT.debug.xcconfig"; sourceTree = "<group>"; };
+		DC1BE69C220B4C140091AEE8 /* ConfirmationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationVC.swift; sourceTree = "<group>"; };
 		DC22F8CB21EF647200D51DCB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DC53A8A121EF32AF009F7607 /* BooKT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BooKT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC53A8A421EF32AF009F7607 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +58,7 @@
 		DCBB338E22003987003E5CA3 /* iPadRestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iPadRestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		DCBB339122003D3F003E5CA3 /* iPhoneRestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneRestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		DCBB339222003D3F003E5CA3 /* iPhoneRestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iPhoneRestaurantTableViewCell.xib; sourceTree = "<group>"; };
+		DCBCC26E220ACF5D00D9D649 /* ReservationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationVC.swift; sourceTree = "<group>"; };
 		DCDAFEF02201CB1E0044D216 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		DCDAFEF12201CB1E0044D216 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		DCDAFEF42201E0130044D216 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -142,7 +146,9 @@
 		DCA7CAF321F5B382003FD0FD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DC1BE69C220B4C140091AEE8 /* ConfirmationVC.swift */,
 				DCE6433122082C3B00F24D8F /* RestaurantTableVC.swift */,
+				DCBCC26E220ACF5D00D9D649 /* ReservationVC.swift */,
 				DCDAFEF42201E0130044D216 /* NavigationController.swift */,
 				DCE944862201AACA00839523 /* HomeCollectionVC.swift */,
 				DCBB338B22003275003E5CA3 /* RestaurantsTableVC.swift */,
@@ -340,7 +346,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCE944872201AACA00839523 /* HomeCollectionVC.swift in Sources */,
+				DCBCC26F220ACF5D00D9D649 /* ReservationVC.swift in Sources */,
 				DCBB338F22003987003E5CA3 /* iPadRestaurantTableViewCell.swift in Sources */,
+				DC1BE69D220B4C140091AEE8 /* ConfirmationVC.swift in Sources */,
 				DCDCBBBE22087D870005A759 /* MapTableViewCell.swift in Sources */,
 				DC57BB8221FC869700A48087 /* SearchVC.swift in Sources */,
 				DCBB338C22003275003E5CA3 /* RestaurantsTableVC.swift in Sources */,

@@ -20,6 +20,7 @@ class SearchVC: UIViewController {
         searchTableView.delegate = self
         setupNavbar()
         setupNavBarImage()
+        
     }
     
     func setupNavbar(){
@@ -45,13 +46,7 @@ class SearchVC: UIViewController {
         }
     }
 
-
-
-
-
 }
-
-
 
 extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     
