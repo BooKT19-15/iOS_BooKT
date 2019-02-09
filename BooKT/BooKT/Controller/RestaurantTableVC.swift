@@ -37,12 +37,20 @@ class RestaurantTableVC: UITableViewController {
     
     
     func animateButton(){
-        
-        UIView.animate(withDuration: 3, animations: {
-            self.reserveButton.backgroundColor = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)
-            self.reserveButton.tintColor = .white
-        }, completion: nil)
-        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.reserveButton.layer.borderWidth = 0.5
+            self.reserveButton.layer.borderColor = UIColor.white.cgColor
+            self.reserveButton.layer.cornerRadius = 5
+        }) { (done) in
+            if done {
+                UIView.animate(withDuration: 1, animations: {
+                    self.reserveButton.backgroundColor = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)
+                    self.reserveButton.tintColor = .white
+                    self.reserveButton.layer.borderWidth = 0
+                }, completion: nil)
+            }
+        }
+
     }
     
     

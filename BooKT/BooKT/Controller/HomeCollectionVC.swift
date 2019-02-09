@@ -18,12 +18,15 @@ private let Headercut : CGFloat = 0
 
 fileprivate let cellId = "mainCell"
 fileprivate let headerId = "headerId"
-let padding: CGFloat = 10
+let padding: CGFloat = 5
 class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Register cell classes
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+
         setupCollectionViewLayout()
     
         collectionView.register(HomeCell.self, forCellWithReuseIdentifier: "mainCell")
@@ -31,14 +34,42 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.contentInsetAdjustmentBehavior = .never
     }
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
+    func setupCollectionViewLayout(){
+        let layout = StrecheyHeader()
+        layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
+        collectionView.collectionViewLayout = layout
+    }
    
-    fileprivate func setupCollectionViewLayout() {
-        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
+    func transform(cell: UICollectionViewCell){
+        let coverFrame = cell.convert(cell.bounds, to: self.view)
+        let transfromOffsetY = collectionView.bounds.height * 2/3
+        let precent = getPrecent(value: (coverFrame.minY - transfromOffsetY) / (collectionView.bounds.height - transfromOffsetY))
+        let maxScaleDifference: CGFloat = 0.2
+        let scale = precent * maxScaleDifference
+        cell.transform = CGAffineTransform(scaleX: 1 - scale, y: 1 - scale)
+    }
+    func getPrecent(value: CGFloat) -> CGFloat{
+        let lowerBound: CGFloat = 0
+        let upperBound: CGFloat = 1
+        
+        if value < lowerBound {
+            return lowerBound
+        }else if value > upperBound {
+            return upperBound
         }
+        return value
     }
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        if  translation.y  < 0 {
+            collectionView.visibleCells.forEach{transform(cell: $0)}
+        }
+        setNavbar(scrollView: scrollView)
+        
         let contentOffsetY = scrollView.contentOffset.y
         
         if contentOffsetY > 0 {
@@ -54,6 +85,22 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as? HeaderView
         return headerView!
+    }
+    
+    func setNavbar(scrollView: UIScrollView){
+        var offset = scrollView.contentOffset.y / 100
+        if offset > 1 {
+            offset = 1
+            setNavColor(offset: offset)
+        }else {
+            setNavColor(offset: offset)
+        }
+        
+    }
+    func setNavColor(offset: CGFloat){
+        let color = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: offset)
+        self.navigationController?.navigationBar.backgroundColor = color
+        UIApplication.shared.statusBarView?.backgroundColor = color
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -73,6 +120,8 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath)
+        cell.layer.cornerRadius = 8.0
+        transform(cell: cell)
         return cell
         
     }
@@ -81,7 +130,7 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
         
         let numberOfColumns: CGFloat =  2
         let width = collectionView.frame.size.width
-        let xInsets: CGFloat = 10
+        let xInsets: CGFloat = 5
         let cellSpacing: CGFloat = 5
         
         // Check if it's iPad
