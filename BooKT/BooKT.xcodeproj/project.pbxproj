@@ -38,6 +38,9 @@
 		DCE944892201ABCB00839523 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE944882201ABCB00839523 /* HeaderView.swift */; };
 		DCE9448B2201AC1000839523 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9448A2201AC1000839523 /* Extensions+UIView.swift */; };
 		DCE9448D2201AD6B00839523 /* StrecheyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9448C2201AD6B00839523 /* StrecheyHeader.swift */; };
+		DCFCFA8522117384008B48CD /* testTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCFA8422117384008B48CD /* testTableViewController.swift */; };
+		DCFCFA872211A03D008B48CD /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCFA862211A03D008B48CD /* mainViewController.swift */; };
+		DCFCFA892211A7B7008B48CD /* XYZTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCFA882211A7B7008B48CD /* XYZTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,9 @@
 		DCE944882201ABCB00839523 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		DCE9448A2201AC1000839523 /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		DCE9448C2201AD6B00839523 /* StrecheyHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrecheyHeader.swift; sourceTree = "<group>"; };
+		DCFCFA8422117384008B48CD /* testTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = testTableViewController.swift; path = Controller/testTableViewController.swift; sourceTree = "<group>"; };
+		DCFCFA862211A03D008B48CD /* mainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
+		DCFCFA882211A7B7008B48CD /* XYZTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = XYZTableViewController.swift; path = Controller/XYZTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +140,8 @@
 				DCA7CAF321F5B382003FD0FD /* Controller */,
 				DC53A8A421EF32AF009F7607 /* AppDelegate.swift */,
 				DC53A8A821EF32AF009F7607 /* Main.storyboard */,
+				DCFCFA8422117384008B48CD /* testTableViewController.swift */,
+				DCFCFA882211A7B7008B48CD /* XYZTableViewController.swift */,
 				DCDAFEF62201E30D0044D216 /* TabBarController.swift */,
 				DC53A8AB21EF32B0009F7607 /* Assets.xcassets */,
 				DC53A8AD21EF32B0009F7607 /* LaunchScreen.storyboard */,
@@ -146,6 +154,7 @@
 		DCA7CAF321F5B382003FD0FD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DCFCFA862211A03D008B48CD /* mainViewController.swift */,
 				DC1BE69C220B4C140091AEE8 /* ConfirmationVC.swift */,
 				DCE6433122082C3B00F24D8F /* RestaurantTableVC.swift */,
 				DCBCC26E220ACF5D00D9D649 /* ReservationVC.swift */,
@@ -347,7 +356,9 @@
 			files = (
 				DCE944872201AACA00839523 /* HomeCollectionVC.swift in Sources */,
 				DCBCC26F220ACF5D00D9D649 /* ReservationVC.swift in Sources */,
+				DCFCFA872211A03D008B48CD /* mainViewController.swift in Sources */,
 				DCBB338F22003987003E5CA3 /* iPadRestaurantTableViewCell.swift in Sources */,
+				DCFCFA8522117384008B48CD /* testTableViewController.swift in Sources */,
 				DC1BE69D220B4C140091AEE8 /* ConfirmationVC.swift in Sources */,
 				DCDCBBBE22087D870005A759 /* MapTableViewCell.swift in Sources */,
 				DC57BB8221FC869700A48087 /* SearchVC.swift in Sources */,
@@ -364,6 +375,7 @@
 				DCDAFEF22201CB1E0044D216 /* HomeCell.swift in Sources */,
 				DCE64337220860C100F24D8F /* SectionsMenuTableViewCell.swift in Sources */,
 				DCE9448D2201AD6B00839523 /* StrecheyHeader.swift in Sources */,
+				DCFCFA892211A7B7008B48CD /* XYZTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
