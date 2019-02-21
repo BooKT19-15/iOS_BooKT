@@ -7,28 +7,20 @@
 //
 
 import UIKit
-struct Objects {
-    
-    var sectionName = String()
-    var opend = Bool()
-    var sectionObjects = [String]()
-}
-
 class RestaurantTableVC: UITableViewController {
     
     @IBOutlet weak var reserveButton: UIButton!
-    var sectionArray = [Objects]()
     var Headerview : UIView!
     var NewHeaderLayer : CAShapeLayer!
     
-    private let Headerheight : CGFloat = 300
+    private let Headerheight : CGFloat = 500
     private let Headercut : CGFloat = 0
     
     
     override func viewDidLoad() {
         setupTableview()
         animateButton()
-        sectionArray = [Objects(sectionName:"TEST1" ,opend: false, sectionObjects: ["TEST1","TEST1","TEST1"]),Objects(sectionName:"TEST2" ,opend: false, sectionObjects: ["TEST2","TEST2","TEST2"]),Objects(sectionName: "TEST3", opend: false,sectionObjects: ["TEST3"]),Objects(sectionName: "TEST4",opend: false, sectionObjects: ["TEST4","TEST4","TEST4"]),Objects(sectionName: "TEST5", opend: false,sectionObjects: ["TEST5"]),Objects(sectionName: "TEST6",opend: false, sectionObjects: []),Objects(sectionName: "TEST6", opend: false,sectionObjects: [])]
+
         super.viewDidLoad()
         
         self.UpdateView()
@@ -162,68 +154,19 @@ class RestaurantTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       //if section is map
-        if indexPath.section == sectionArray.count - 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "mapcCell", for: indexPath) as! MapTableViewCell
-            return cell 
-        }
-        //if section is gallery
-        if indexPath.section == sectionArray.count - 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "galleryCell", for: indexPath) as! GalleryTableViewCell
-            return cell
-        }
-        //others sections
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "sectionsCell", for: indexPath)as! SectionsMenuTableViewCell
-            cell.sectionName.text = sectionArray[indexPath.section].sectionName
-            return cell
-        }
-        //menu cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuiPhoneTableViewCell
-        //cell.sectionName.text = sectionArray[indexPath.section].sectionObjects[indexPath.row - 1]
-        return cell
-
+       let cell = tableView.dequeueReusableCell(withIdentifier: "mapcCell", for: indexPath)
+        return cell 
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        if indexPath.row == 0 && indexPath.section == sectionArray.count - 2 {
-            return 250.0
-        }
-        if indexPath.row == 0 && indexPath.section == sectionArray.count - 1 {
-            return 250.0
-        }
-        
-        if indexPath.row == 0 {
-            return 60.0
-        }else {
-            return 100.0
-        }
+        return 100
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if sectionArray[section].opend == true {
-            return sectionArray[section].sectionObjects.count + 1
-        }
-        return 1
+      return 3
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionArray.count
+        return 1
     }
-    //    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        return sectionArray[section].sectionName
-    //    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if sectionArray[indexPath.section].opend == true && indexPath.section != sectionArray.count - 1 && indexPath.row == 0 {
-            sectionArray[indexPath.section].opend = false
-            let sections = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(sections, with: .none)
-        }else if sectionArray[indexPath.section].opend == false && indexPath.section != sectionArray.count - 1 && indexPath.row == 0 {
-            sectionArray[indexPath.section].opend = true
-            let sections = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(sections, with: .none)
-        }
-    }
-    
 }

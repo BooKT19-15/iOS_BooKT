@@ -15,6 +15,11 @@
 		DC53A8AC21EF32B0009F7607 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC53A8AB21EF32B0009F7607 /* Assets.xcassets */; };
 		DC53A8AF21EF32B0009F7607 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC53A8AD21EF32B0009F7607 /* LaunchScreen.storyboard */; };
 		DC57BB8221FC869700A48087 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57BB8121FC869700A48087 /* SearchVC.swift */; };
+		DC80E14A221DA1BA0035D9E6 /* TabsMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80E149221DA1BA0035D9E6 /* TabsMenuVC.swift */; };
+		DC80E14C221DA3310035D9E6 /* MenuTabTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80E14B221DA3310035D9E6 /* MenuTabTableVC.swift */; };
+		DC80E14E221DA40E0035D9E6 /* ReviewTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80E14D221DA40E0035D9E6 /* ReviewTableVC.swift */; };
+		DC80E150221DCE3C0035D9E6 /* MainTabsMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80E14F221DCE3C0035D9E6 /* MainTabsMenuVC.swift */; };
+		DC9D70992215839C000CEE87 /* RestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D70982215839C000CEE87 /* RestaurantVC.swift */; };
 		DCBB338C22003275003E5CA3 /* RestaurantsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB338B22003275003E5CA3 /* RestaurantsTableVC.swift */; };
 		DCBB338F22003987003E5CA3 /* iPadRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB338D22003987003E5CA3 /* iPadRestaurantTableViewCell.swift */; };
 		DCBB339022003987003E5CA3 /* iPadRestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCBB338E22003987003E5CA3 /* iPadRestaurantTableViewCell.xib */; };
@@ -38,9 +43,7 @@
 		DCE944892201ABCB00839523 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE944882201ABCB00839523 /* HeaderView.swift */; };
 		DCE9448B2201AC1000839523 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9448A2201AC1000839523 /* Extensions+UIView.swift */; };
 		DCE9448D2201AD6B00839523 /* StrecheyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9448C2201AD6B00839523 /* StrecheyHeader.swift */; };
-		DCFCFA8522117384008B48CD /* testTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCFA8422117384008B48CD /* testTableViewController.swift */; };
 		DCFCFA872211A03D008B48CD /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCFA862211A03D008B48CD /* mainViewController.swift */; };
-		DCFCFA892211A7B7008B48CD /* XYZTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCFA882211A7B7008B48CD /* XYZTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,11 @@
 		DC53A8AE21EF32B0009F7607 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC53A8B021EF32B0009F7607 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC57BB8121FC869700A48087 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		DC80E149221DA1BA0035D9E6 /* TabsMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabsMenuVC.swift; path = Controller/TabsMenuVC.swift; sourceTree = "<group>"; };
+		DC80E14B221DA3310035D9E6 /* MenuTabTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuTabTableVC.swift; path = Controller/MenuTabTableVC.swift; sourceTree = "<group>"; };
+		DC80E14D221DA40E0035D9E6 /* ReviewTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReviewTableVC.swift; path = Controller/ReviewTableVC.swift; sourceTree = "<group>"; };
+		DC80E14F221DCE3C0035D9E6 /* MainTabsMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabsMenuVC.swift; path = Controller/MainTabsMenuVC.swift; sourceTree = "<group>"; };
+		DC9D70982215839C000CEE87 /* RestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantVC.swift; sourceTree = "<group>"; };
 		DCBB338B22003275003E5CA3 /* RestaurantsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTableVC.swift; sourceTree = "<group>"; };
 		DCBB338D22003987003E5CA3 /* iPadRestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadRestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		DCBB338E22003987003E5CA3 /* iPadRestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iPadRestaurantTableViewCell.xib; sourceTree = "<group>"; };
@@ -79,9 +87,7 @@
 		DCE944882201ABCB00839523 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		DCE9448A2201AC1000839523 /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		DCE9448C2201AD6B00839523 /* StrecheyHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrecheyHeader.swift; sourceTree = "<group>"; };
-		DCFCFA8422117384008B48CD /* testTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = testTableViewController.swift; path = Controller/testTableViewController.swift; sourceTree = "<group>"; };
 		DCFCFA862211A03D008B48CD /* mainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
-		DCFCFA882211A7B7008B48CD /* XYZTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = XYZTableViewController.swift; path = Controller/XYZTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,8 +146,11 @@
 				DCA7CAF321F5B382003FD0FD /* Controller */,
 				DC53A8A421EF32AF009F7607 /* AppDelegate.swift */,
 				DC53A8A821EF32AF009F7607 /* Main.storyboard */,
-				DCFCFA8422117384008B48CD /* testTableViewController.swift */,
-				DCFCFA882211A7B7008B48CD /* XYZTableViewController.swift */,
+				DC80E14B221DA3310035D9E6 /* MenuTabTableVC.swift */,
+				DC80E149221DA1BA0035D9E6 /* TabsMenuVC.swift */,
+				DC80E14F221DCE3C0035D9E6 /* MainTabsMenuVC.swift */,
+				DC80E14D221DA40E0035D9E6 /* ReviewTableVC.swift */,
+				DC9D70982215839C000CEE87 /* RestaurantVC.swift */,
 				DCDAFEF62201E30D0044D216 /* TabBarController.swift */,
 				DC53A8AB21EF32B0009F7607 /* Assets.xcassets */,
 				DC53A8AD21EF32B0009F7607 /* LaunchScreen.storyboard */,
@@ -308,6 +317,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-BooKT/Pods-BooKT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -317,6 +327,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -358,7 +369,6 @@
 				DCBCC26F220ACF5D00D9D649 /* ReservationVC.swift in Sources */,
 				DCFCFA872211A03D008B48CD /* mainViewController.swift in Sources */,
 				DCBB338F22003987003E5CA3 /* iPadRestaurantTableViewCell.swift in Sources */,
-				DCFCFA8522117384008B48CD /* testTableViewController.swift in Sources */,
 				DC1BE69D220B4C140091AEE8 /* ConfirmationVC.swift in Sources */,
 				DCDCBBBE22087D870005A759 /* MapTableViewCell.swift in Sources */,
 				DC57BB8221FC869700A48087 /* SearchVC.swift in Sources */,
@@ -367,15 +377,19 @@
 				DC53A8A521EF32AF009F7607 /* AppDelegate.swift in Sources */,
 				DCBB339322003D3F003E5CA3 /* iPhoneRestaurantTableViewCell.swift in Sources */,
 				DCDAFEF52201E0130044D216 /* NavigationController.swift in Sources */,
+				DC80E14E221DA40E0035D9E6 /* ReviewTableVC.swift in Sources */,
+				DC80E150221DCE3C0035D9E6 /* MainTabsMenuVC.swift in Sources */,
 				DCDCBBC222087F720005A759 /* GalleryTableViewCell.swift in Sources */,
 				DCE944892201ABCB00839523 /* HeaderView.swift in Sources */,
 				DCE9448B2201AC1000839523 /* Extensions+UIView.swift in Sources */,
 				DCE6433222082C3B00F24D8F /* RestaurantTableVC.swift in Sources */,
 				DCDAFEF72201E30D0044D216 /* TabBarController.swift in Sources */,
 				DCDAFEF22201CB1E0044D216 /* HomeCell.swift in Sources */,
+				DC80E14A221DA1BA0035D9E6 /* TabsMenuVC.swift in Sources */,
+				DC80E14C221DA3310035D9E6 /* MenuTabTableVC.swift in Sources */,
 				DCE64337220860C100F24D8F /* SectionsMenuTableViewCell.swift in Sources */,
 				DCE9448D2201AD6B00839523 /* StrecheyHeader.swift in Sources */,
-				DCFCFA892211A7B7008B48CD /* XYZTableViewController.swift in Sources */,
+				DC9D70992215839C000CEE87 /* RestaurantVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
