@@ -176,13 +176,13 @@ class RestaurantsTableVC: UITableViewController {
         if (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "iPadCellRestaurant", for: indexPath) as! iPadRestaurantTableViewCell
-            cell.backgroundColor = .blue
+           // cell.backgroundColor = .blue
             return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "iPhoneCellRestaurant", for: indexPath) as! iPhoneRestaurantTableViewCell
-            cell.backgroundColor = .yellow
+           // cell.backgroundColor = .yellow
             
             return cell
         }

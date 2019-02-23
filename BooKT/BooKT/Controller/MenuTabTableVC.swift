@@ -13,11 +13,11 @@ import UIKit
 import XLPagerTabStrip
 
 class MenuTabTableVC: UITableViewController {
-    var twoDimensionArray = [ExpandableNames(isExpanded: true, names: ["A","B","C","D"]),
-                             ExpandableNames(isExpanded: true, names: ["A2","B2","C2","D2"]),
-                             ExpandableNames(isExpanded: true, names: ["A3","B3","C3","D3"])
+    var twoDimensionArray = [ExpandableNames(isExpanded: false, names: ["A","B","C","D"]),
+                             ExpandableNames(isExpanded: false, names: ["A2","B2","C2","D2"]),
+                             ExpandableNames(isExpanded: false, names: ["A3","B3","C3","D3"])
                             ]
-    
+    let menu = ["Starters","Main dish","Drinks"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class MenuTabTableVC: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let button = UIButton(type: .custom)
-        button.setTitle("Test", for: .normal)
+        button.setTitle(menu[section], for: .normal)
         button.setTitleColor(.white, for: .reserved)
         button.backgroundColor = UIColor(red: 22/255, green: 22/255, blue: 22/255, alpha: 1)
         button.addTarget(self, action: #selector(handleExpandHeader), for: .touchUpInside)
@@ -66,7 +66,7 @@ class MenuTabTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuiPhoneTableViewCell
-       //let names = twoDimensionArray[indexPath.section].names[indexPath.row]
+       // let names = twoDimensionArray[indexPath.section].names[indexPath.row]
        //cell.textLabel?.text = names
        //cell.textLabel?.textColor = .white
         return cell

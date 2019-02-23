@@ -16,9 +16,13 @@ class RestaurantVC: UIViewController {
     var counter = 0
     
     
+    @IBOutlet weak var reserveButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        reserveButton.layer.cornerRadius = 8
+        reserveButton.layer.borderWidth = 1.2
+        reserveButton.layer.borderColor = UIColor.white.cgColor
         
         pageView.numberOfPages = 5
         pageView.currentPage = counter
@@ -28,6 +32,15 @@ class RestaurantVC: UIViewController {
         collectionViewOfImages.contentInsetAdjustmentBehavior = .never
         let index = IndexPath.init(row: counter, section: 0)
         self.collectionViewOfImages.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+        applyDesignAnimation()
+    }
+    
+    func applyDesignAnimation(){
+        UIView.animate(withDuration: 2) {
+            let lightColor = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)
+            self.reserveButton.backgroundColor = lightColor
+            self.reserveButton.layer.borderWidth = 0 
+        }
     }
 }
 

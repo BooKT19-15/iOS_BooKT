@@ -12,7 +12,7 @@ class TabsMenuVC: ButtonBarPagerTabStripViewController {
 
   
     override func viewDidLoad() {
-        self.settings.style.buttonBarHeight = 80
+        self.settings.style.buttonBarHeight = 60
         loadDesign()
         super.viewDidLoad()
     }
@@ -25,17 +25,17 @@ class TabsMenuVC: ButtonBarPagerTabStripViewController {
     }
     
     func loadDesign(){
-        let darkColor = UIColor(red: 22/255, green: 22/255, blue: 22/255, alpha: 1)
+        //let darkColor = UIColor(red: 22/255, green: 22/255, blue: 22/255, alpha: 1)
         let lightColor = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)
         self.settings.style.selectedBarHeight = 1
         self.settings.style.selectedBarBackgroundColor = .black
-        self.settings.style.buttonBarBackgroundColor = darkColor
-        self.settings.style.buttonBarItemBackgroundColor = darkColor
-        self.settings.style.selectedBarBackgroundColor = lightColor
+        self.settings.style.buttonBarBackgroundColor = lightColor
+        self.settings.style.buttonBarItemBackgroundColor = lightColor
+        self.settings.style.selectedBarBackgroundColor = .white
         self.settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 13)
         self.settings.style.selectedBarHeight = 4.0
         self.settings.style.buttonBarMinimumLineSpacing = 0
-        self.settings.style.buttonBarItemTitleColor = lightColor
+        self.settings.style.buttonBarItemTitleColor = .white
         self.settings.style.buttonBarItemsShouldFillAvailableWidth = true
         self.settings.style.buttonBarLeftContentInset = 10
         self.settings.style.buttonBarRightContentInset = 10
@@ -43,7 +43,7 @@ class TabsMenuVC: ButtonBarPagerTabStripViewController {
         changeCurrentIndexProgressive = {(oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool)-> Void in
             guard changeCurrentIndex == true else {return}
             oldCell?.label.textColor = UIColor.white
-            newCell?.label.textColor = lightColor
+            newCell?.label.textColor = UIColor.white
         }
     }
 

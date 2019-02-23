@@ -25,6 +25,9 @@ class ReservationVC: UIViewController {
             seatsNumberLabel.text = "\(count)"
         }
     }
+    @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 
