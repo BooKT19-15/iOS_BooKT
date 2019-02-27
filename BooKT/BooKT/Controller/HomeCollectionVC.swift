@@ -128,7 +128,7 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         
-        let numberOfColumns: CGFloat =  2
+        let numberOfColumns: CGFloat =  3
         let width = collectionView.frame.size.width
         let xInsets: CGFloat = 5
         let cellSpacing: CGFloat = 5
