@@ -10,24 +10,14 @@ import UIKit
 
 class RestaurantsTableVC: UITableViewController {
    
-    var Headerview : UIView!
-    var NewHeaderLayer : CAShapeLayer!
-    
-    private let Headerheight : CGFloat = 230
-    private let Headercut : CGFloat = 0
-    
-    
-    
+
+    var parallaxOffSetSpeed: CGFloat = 30
+    let cellHeight: CGFloat = 250
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.UpdateView()
-        setupNavBar()
-        if (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad)
-        {
-            registerCellForIpad()
-        }else{
-            registerCellForIphone()
-        }
+        tableView.rowHeight = 250
+        tableView.separatorStyle = .none
+        registerCellForIpad()
     }
     
     
@@ -45,94 +35,24 @@ class RestaurantsTableVC: UITableViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
     }
+   
     
-    func UpdateView() {
-        
-        tableView.backgroundColor = UIColor.white
-        Headerview = tableView.tableHeaderView
-        tableView.tableHeaderView = nil
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.addSubview(Headerview)
-        
-        NewHeaderLayer = CAShapeLayer()
-        NewHeaderLayer.fillColor = UIColor.black.cgColor
-        Headerview.layer.mask = NewHeaderLayer
-        
-        let newheight = Headerheight - Headercut / 2
-        tableView.contentInset = UIEdgeInsets(top: newheight, left: 0, bottom: 0, right: 0)
-        tableView.contentOffset = CGPoint(x: 0, y: -newheight)
-        
-        self.Setupnewview()
+    var parallaxImageHeight: CGFloat {
+        let maxOffSet = (sqrt(pow(cellHeight, 2) + 4 * parallaxOffSetSpeed * self.tableView.frame.height) - cellHeight) / 2
+        return maxOffSet + cellHeight
     }
     
-    
-    
-    func Setupnewview() {
-        let newheight = Headerheight - Headercut / 2
-        var getheaderframe = CGRect(x: 0, y: -newheight, width: tableView.bounds.width, height: Headerheight)
-        if tableView.contentOffset.y < newheight
-        {
-            getheaderframe.origin.y = tableView.contentOffset.y
-            getheaderframe.size.height = -tableView.contentOffset.y + Headercut / 2
-        }
-        
-        Headerview.frame = getheaderframe
-        let cutdirection = UIBezierPath()
-        cutdirection.move(to: CGPoint(x: 0, y: 0))
-        cutdirection.addLine(to: CGPoint(x: getheaderframe.width, y: 0))
-        cutdirection.addLine(to: CGPoint(x: getheaderframe.width, y: getheaderframe.height))
-        cutdirection.addLine(to: CGPoint(x: 0, y: getheaderframe.height - Headercut))
-        NewHeaderLayer.path = cutdirection.cgPath
+    func parallaxOffSet(newOffSSetY: CGFloat, cell: UITableViewCell) -> CGFloat {
+        return(newOffSSetY - cell.frame.origin.y) / parallaxImageHeight * parallaxOffSetSpeed
     }
-    
-    
-    
-    
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.tableView.decelerationRate = UIScrollView.DecelerationRate.fast
-    }
-    
-    
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.Setupnewview()
-        var offset = scrollView.contentOffset.y / 150
-        if offset > -0.5
-        {
-            UIView.animate(withDuration: 0.2, animations: {
-                offset = 1
-                //let color = UIColor.init(red: 1, green: 1, blue: 1, alpha: offset)
-                let navigationcolor = UIColor.init(hue: 0, saturation: offset, brightness: 1, alpha: 1)
-                
-                self.navigationController?.navigationBar.tintColor = navigationcolor
-                self.navigationController?.navigationBar.backgroundColor = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1) //color
-                UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)  //color
-                
-                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white] //navigationcolor]
-                self.navigationController?.navigationBar.barStyle = .default
-            })
-        }
-        else
-        {
-            UIView.animate(withDuration: 0.2, animations: {
-                let color = UIColor.init(red: 1, green: 1, blue: 1, alpha: offset)
-                self.navigationController?.navigationBar.tintColor = UIColor.white
-                self.navigationController?.navigationBar.backgroundColor = color
-                UIApplication.shared.statusBarView?.backgroundColor = color
-                
-                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-                self.navigationController?.navigationBar.barStyle = .black
-            })
+        let offSetY = tableView.contentOffset.y
+        for cell in tableView.visibleCells as! [RestaurantTableCell] {
+            cell.parallaxTopConstraint.constant = parallaxOffSet(newOffSSetY: offSetY, cell: cell)
+            
         }
     }
-    
-    
-    
-    
-    
-    
-    
     //MARK:- RegisterCells
     func registerCellForIphone(){
         
@@ -143,8 +63,8 @@ class RestaurantsTableVC: UITableViewController {
     
     
     func registerCellForIpad(){
-        tableView.register(iPadRestaurantTableViewCell.self, forCellReuseIdentifier: "iPadCellRestaurant")
-        tableView.register(UINib(nibName: "iPadRestaurantTableViewCell", bundle: nil), forCellReuseIdentifier: "iPadCellRestaurant")
+        tableView.register(RestaurantTableCell.self, forCellReuseIdentifier: "RestaurantCell")
+        tableView.register(UINib(nibName: "RestaurantTableCell", bundle: nil), forCellReuseIdentifier: "RestaurantCell")
         
     }
     
@@ -155,41 +75,25 @@ class RestaurantsTableVC: UITableViewController {
     
     
     //MARK:- TableView Delegates
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad){
-            return 230
-        }
-        return 130
-    }
+
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad)
-        {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "iPadCellRestaurant", for: indexPath) as! iPadRestaurantTableViewCell
-           // cell.backgroundColor = .blue
-            return cell
-        }
-        else
-        {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "iPhoneCellRestaurant", for: indexPath) as! iPhoneRestaurantTableViewCell
-           // cell.backgroundColor = .yellow
-            
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantTableCell
+        cell.parallaxImageHeight.constant = self.parallaxImageHeight
+        cell.parallaxTopConstraint.constant = parallaxOffSet(newOffSSetY: tableView.contentOffset.y, cell: cell)
+        return cell
     }
+   
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //this a comment that will remind me to dismiss the view using tab bar button
+        //this's a comment that will remind me to dismiss the view using tab bar button
         //self.dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "gotoRestaurant", sender: self)
     }
+    
 }

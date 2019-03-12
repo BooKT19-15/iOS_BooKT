@@ -13,6 +13,9 @@ class ReviewTableVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(ReviewTableViewCell.self, forCellReuseIdentifier: "reviewTabCell")
+        tableView.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "reviewTabCell")
+        tableView.rowHeight = 130
     }
 
 

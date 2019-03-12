@@ -8,9 +8,8 @@ target 'BooKT' do
   # Pods for BooKT
 
 
-pod 'Firebase/Core'
-pod 'Firebase/Auth'
-pod 'Firebase/Database'
+
 pod 'XLPagerTabStrip'
+pod 'MBCircularProgressBar'
 
 end

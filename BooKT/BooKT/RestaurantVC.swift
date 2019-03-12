@@ -8,79 +8,91 @@
 
 import UIKit
 
-class RestaurantVC: UIViewController {
+class RestaurantVC: UIViewController{
 
-    @IBOutlet weak var collectionViewOfImages: UICollectionView!
-    @IBOutlet weak var pageView:UIPageControl!
+   
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    let images = ["alps-background-beautiful-view-1227520",
+                  "alps-background-beautiful-view-1227520",
+                  "alps-background-beautiful-view-1227520"]
     
-    var counter = 0
-    
-    
-    @IBOutlet weak var reserveButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        reserveButton.layer.cornerRadius = 8
-        reserveButton.layer.borderWidth = 1.2
-        reserveButton.layer.borderColor = UIColor.white.cgColor
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 90
+        tableView.separatorStyle = .none
+        scrollView.delegate = self
         
-        pageView.numberOfPages = 5
-        pageView.currentPage = counter
-    
-        collectionViewOfImages.delegate = self
-        collectionViewOfImages.dataSource = self
-        collectionViewOfImages.contentInsetAdjustmentBehavior = .never
-        let index = IndexPath.init(row: counter, section: 0)
-        self.collectionViewOfImages.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-        applyDesignAnimation()
+        pageControl.numberOfPages = images.count
+        setScrollWithImages()
     }
+
     
-    func applyDesignAnimation(){
-        UIView.animate(withDuration: 2) {
-            let lightColor = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)
-            self.reserveButton.backgroundColor = lightColor
-            self.reserveButton.layer.borderWidth = 0 
+    
+    
+    func setScrollWithImages(){
+        for i in 0..<images.count {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleToFill
+            imageView.image = UIImage(named: images[i])
+            let xPostion = CGFloat(i)*self.view.bounds.size.width
+            imageView.frame = CGRect(x: xPostion, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height)
+            scrollView.contentSize.width = view.frame.size.width * CGFloat(i+1)
+            scrollView.addSubview(imageView)
+            
+            tableView.register(RestaurantReviewCardTVCell.self, forCellReuseIdentifier: "restaurantReviewCell")
+            tableView.register(UINib(nibName: "RestaurantReviewCardTVCell", bundle: nil), forCellReuseIdentifier: "restaurantReviewCell")
+            
+            tableView.register(MapTableViewCell.self, forCellReuseIdentifier: "mapcCell")
+            tableView.register(UINib(nibName: "MapTableViewCell", bundle: nil), forCellReuseIdentifier: "mapcCell")
         }
     }
 }
 
-extension RestaurantVC: UICollectionViewDelegate , UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+
+
+extension RestaurantVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let page = scrollView.contentOffset.x / scrollView.frame.size.width
+        pageControl.currentPage = Int(page)
+    }
+}
+
+
+extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath)
-        if let vc = cell.viewWithTag(111) as? UIImageView{
-            vc.image = #imageLiteral(resourceName: "Image")
-        }else if let ab = cell.viewWithTag(222) as? UIPageControl {
-            ab.currentPage = indexPath.row
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCardCell", for: indexPath) as! RestaurantHeaderCardTVCell
+            return cell
+        }else if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantReviewCell", for: indexPath)
+            return cell
+        } else if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "mapcCell", for: indexPath)
+            return cell
         }
-        return cell 
+        else {
+            return RestaurantHeaderCardTVCell()
+        }
+    }
+   
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    
+        if indexPath.row == 0 {
+            return 220.0
+        }
+        else if indexPath.row == 2 {
+            return 280.0
+        }
+        return 90.0
     }
 }
-
-
-extension RestaurantVC: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = collectionViewOfImages.frame.size
-        return CGSize(width: size.width, height: size.height)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
-    }
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        counter += 1
-        pageView.currentPage = counter
-    }
-}
-
-// MARK-: PAGEVIEW DOES NOT WORK!!!!!!!!!!!!!!!

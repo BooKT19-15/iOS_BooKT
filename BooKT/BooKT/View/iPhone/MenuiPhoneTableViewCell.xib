@@ -34,9 +34,42 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Herb and Garlic Sourdough" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Uu-56-4Ms">
+                                <rect key="frame" x="88" y="4" width="212" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="UvJ-yy-ezT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Oej-Mv-bUh">
+                                <rect key="frame" x="88" y="26" width="212" height="53.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Herb and Garlic Sourdough Herb and Garlic Sourdough Herb and Garlic Sourdough" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Dh-zZ-TGn">
+                                        <rect key="frame" x="0.0" y="0.0" width="212" height="24.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$8.50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nc1-cx-6DE">
+                                        <rect key="frame" x="0.0" y="29.5" width="212" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Oej-Mv-bUh" secondAttribute="bottom" constant="4" id="923-Zq-47r"/>
+                            <constraint firstItem="Oej-Mv-bUh" firstAttribute="leading" secondItem="9kr-K0-1A9" secondAttribute="trailing" constant="4" id="EPL-gS-wxe"/>
+                            <constraint firstItem="Oej-Mv-bUh" firstAttribute="top" secondItem="4Uu-56-4Ms" secondAttribute="bottom" constant="4" id="Ejp-Dn-xBp"/>
+                            <constraint firstItem="4Uu-56-4Ms" firstAttribute="top" secondItem="baK-Bb-sJr" secondAttribute="top" constant="4" id="QMh-e7-0Sp"/>
+                            <constraint firstAttribute="trailing" secondItem="Oej-Mv-bUh" secondAttribute="trailing" constant="4" id="Xt2-3h-od4"/>
+                            <constraint firstItem="4Uu-56-4Ms" firstAttribute="leading" secondItem="9kr-K0-1A9" secondAttribute="trailing" constant="4" id="Y2Q-bn-qAt"/>
+                            <constraint firstAttribute="trailing" secondItem="4Uu-56-4Ms" secondAttribute="trailing" constant="4" id="Zp0-vA-TBJ"/>
                             <constraint firstItem="9kr-K0-1A9" firstAttribute="leading" secondItem="baK-Bb-sJr" secondAttribute="leading" constant="4" id="i2r-ll-EtV"/>
                             <constraint firstItem="9kr-K0-1A9" firstAttribute="centerY" secondItem="baK-Bb-sJr" secondAttribute="centerY" id="sNQ-cY-uv7"/>
                         </constraints>

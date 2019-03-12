@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="cmt-bT-EZT">
-                        <rect key="frame" x="0.0" y="0.0" width="247" height="114"/>
+                        <rect key="frame" x="0.0" y="0.0" width="247" height="140"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6BR-iN-e1p">
                         <rect key="frame" x="0.0" y="114" width="247" height="26"/>
-                        <color key="backgroundColor" red="0.84817141289999998" green="0.23926332589999999" blue="0.30194154379999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="26" id="tR0-KK-4Yw"/>
+                            <constraint firstAttribute="height" constant="26" id="MaA-43-1DQ"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -36,13 +36,13 @@
             </view>
             <color key="backgroundColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="6BR-iN-e1p" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1zK-GT-crt"/>
-                <constraint firstAttribute="trailing" secondItem="cmt-bT-EZT" secondAttribute="trailing" id="7Lf-MM-V4X"/>
-                <constraint firstItem="6BR-iN-e1p" firstAttribute="top" secondItem="cmt-bT-EZT" secondAttribute="bottom" id="JTr-a1-u5Y"/>
-                <constraint firstAttribute="trailing" secondItem="6BR-iN-e1p" secondAttribute="trailing" id="g4L-vU-Kov"/>
-                <constraint firstAttribute="bottom" secondItem="6BR-iN-e1p" secondAttribute="bottom" id="le1-YT-Igc"/>
-                <constraint firstItem="cmt-bT-EZT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="naL-tl-vTa"/>
-                <constraint firstItem="cmt-bT-EZT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ygP-Xd-bxw"/>
+                <constraint firstAttribute="bottom" secondItem="6BR-iN-e1p" secondAttribute="bottom" id="G77-yo-bAg"/>
+                <constraint firstAttribute="trailing" secondItem="6BR-iN-e1p" secondAttribute="trailing" id="LDf-MC-CT3"/>
+                <constraint firstAttribute="trailing" secondItem="cmt-bT-EZT" secondAttribute="trailing" id="Zfn-Le-7Hy"/>
+                <constraint firstItem="cmt-bT-EZT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="an0-uO-ddm"/>
+                <constraint firstAttribute="bottom" secondItem="cmt-bT-EZT" secondAttribute="bottom" id="b2t-A1-jx5"/>
+                <constraint firstItem="cmt-bT-EZT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ccU-zu-aDJ"/>
+                <constraint firstItem="6BR-iN-e1p" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="sVG-dR-loG"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="247" height="140"/>

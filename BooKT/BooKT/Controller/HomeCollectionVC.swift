@@ -18,7 +18,7 @@ private let Headercut : CGFloat = 0
 
 fileprivate let cellId = "mainCell"
 fileprivate let headerId = "headerId"
-let padding: CGFloat = 5
+let padding: CGFloat = 0
 class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     }
     func setupCollectionViewLayout(){
         let layout = StrecheyHeader()
-        layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
+        //layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
         collectionView.collectionViewLayout = layout
     }
    
@@ -115,30 +115,47 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 18
+        return 20
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath)
-        cell.layer.cornerRadius = 8.0
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! HomeCell
+        ////
+        let layer = CAGradientLayer()
+        layer.frame = cell.bounds
+        layer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        //layer.locations = [0.0, 1.0]
+        //cell.layer.addSublayer(layer)
+        cell.homeImageCell.layer.addSublayer(layer)
+        
+        //cell.layer.cornerRadius = 8.0
         transform(cell: cell)
         return cell
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        
+        let rightList = [0,3,6,7,10,13,16,17]
+        let leftList = [1,2,5,8,11,12,15,18]
+        let centerList = [4,9,14,19]
         let numberOfColumns: CGFloat =  3
         let width = collectionView.frame.size.width
         let xInsets: CGFloat = 5
-        let cellSpacing: CGFloat = 5
+        let cellSpacing: CGFloat = 0
         
         // Check if it's iPad
+        
         if UIDevice.current.userInterfaceIdiom == .pad {
             return CGSize(width: (width / 3) - (xInsets + cellSpacing), height:250.0)
         }
-        
-        return CGSize(width: (width / numberOfColumns) - (xInsets + cellSpacing), height: (width / numberOfColumns) - (xInsets + cellSpacing))
+        if rightList.contains(indexPath.row) {
+            return CGSize(width: ((width / 2) - (xInsets + cellSpacing)) - 25, height: (width / numberOfColumns) - (xInsets + cellSpacing))
+        }else if leftList.contains(indexPath.row) {
+            return CGSize(width: ((width / 2) - (xInsets + cellSpacing)) + 25, height: (width / numberOfColumns) - (xInsets + cellSpacing))
+        }else if centerList.contains(indexPath.row) {
+            return CGSize(width: width, height: (width / numberOfColumns) - (xInsets + cellSpacing))
+        }
+        return CGSize(width: (width) - (xInsets + cellSpacing), height: (width / numberOfColumns) - (xInsets + cellSpacing))
         
     
     }
