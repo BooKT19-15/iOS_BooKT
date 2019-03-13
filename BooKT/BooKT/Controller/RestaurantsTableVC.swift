@@ -11,12 +11,12 @@ import UIKit
 class RestaurantsTableVC: UITableViewController {
    
 
-    var parallaxOffSetSpeed: CGFloat = 30
+    //var parallaxOffSetSpeed: CGFloat = 30
     let cellHeight: CGFloat = 250
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 250
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
         registerCellForIpad()
     }
     
@@ -33,26 +33,27 @@ class RestaurantsTableVC: UITableViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        
+        let color = UIColor.init(red: 1, green: 1, blue: 1, alpha: 0)
+        UIApplication.shared.statusBarView?.backgroundColor = color
     }
    
     
-    var parallaxImageHeight: CGFloat {
-        let maxOffSet = (sqrt(pow(cellHeight, 2) + 4 * parallaxOffSetSpeed * self.tableView.frame.height) - cellHeight) / 2
-        return maxOffSet + cellHeight
-    }
-    
-    func parallaxOffSet(newOffSSetY: CGFloat, cell: UITableViewCell) -> CGFloat {
-        return(newOffSSetY - cell.frame.origin.y) / parallaxImageHeight * parallaxOffSetSpeed
-    }
-    
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offSetY = tableView.contentOffset.y
-        for cell in tableView.visibleCells as! [RestaurantTableCell] {
-            cell.parallaxTopConstraint.constant = parallaxOffSet(newOffSSetY: offSetY, cell: cell)
-            
-        }
-    }
+//    var parallaxImageHeight: CGFloat {
+//        let maxOffSet = (sqrt(pow(cellHeight, 2) + 4 * parallaxOffSetSpeed * self.tableView.frame.height) - cellHeight) / 2
+//        return maxOffSet + cellHeight
+//    }
+//
+//    func parallaxOffSet(newOffSSetY: CGFloat, cell: UITableViewCell) -> CGFloat {
+//        return(newOffSSetY - cell.frame.origin.y) / parallaxImageHeight * parallaxOffSetSpeed
+//    }
+//
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offSetY = tableView.contentOffset.y
+//        for cell in tableView.visibleCells as! [RestaurantTableCell] {
+//            cell.parallaxTopConstraint.constant = parallaxOffSet(newOffSSetY: offSetY, cell: cell)
+//
+//        }
+//    }
     //MARK:- RegisterCells
     func registerCellForIphone(){
         
@@ -85,8 +86,7 @@ class RestaurantsTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantTableCell
-        cell.parallaxImageHeight.constant = self.parallaxImageHeight
-        cell.parallaxTopConstraint.constant = parallaxOffSet(newOffSSetY: tableView.contentOffset.y, cell: cell)
+        
         return cell
     }
    

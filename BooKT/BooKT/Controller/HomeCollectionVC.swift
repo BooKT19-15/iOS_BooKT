@@ -120,14 +120,14 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! HomeCell
-        ////
-        let layer = CAGradientLayer()
-        layer.frame = cell.bounds
-        layer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        //layer.locations = [0.0, 1.0]
-        //cell.layer.addSublayer(layer)
-        cell.homeImageCell.layer.addSublayer(layer)
-        
+//        ////
+//        let layer = CAGradientLayer()
+//        layer.frame = cell.bounds
+//        layer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+//        //layer.locations = [0.0, 1.0]
+//        //cell.layer.addSublayer(layer)
+//        cell.homeImageCell.layer.addSublayer(layer)
+////
         //cell.layer.cornerRadius = 8.0
         transform(cell: cell)
         return cell

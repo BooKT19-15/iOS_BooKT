@@ -17,7 +17,7 @@ class RestaurantTableCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
      
-        restaurantImage.clipsToBounds = true 
+//        restaurantImage.clipsToBounds = true 
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

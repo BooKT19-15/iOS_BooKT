@@ -25,7 +25,7 @@ class RestaurantVC: UIViewController{
         tableView.rowHeight = 90
         tableView.separatorStyle = .none
         scrollView.delegate = self
-        
+        tableView.contentInsetAdjustmentBehavior = .never
         pageControl.numberOfPages = images.count
         setScrollWithImages()
     }

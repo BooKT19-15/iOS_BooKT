@@ -37,21 +37,29 @@ class HomeCell: UICollectionViewCell {
 //        homeImageCell.addSubview(view)
 //        
 //        homeImageCell.bringSubviewToFront(view)
-//        
+//
+        
+//        let layer = CAGradientLayer()
+//        layer.frame = cell.bounds
+//        layer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+//        //layer.locations = [0.0, 1.0]
+//        //cell.layer.addSublayer(layer)
+//        homeImageCell.layer.addSublayer(layer)
+//        //
         
     }
 
 }
-extension UIImage {
-    static func gradientImageWithBounds(bounds: CGRect, colors: [CGColor]) -> UIImage {
-        let gradientLayer = CAGradientLayer()
-        //gradientLayer.frame = bounds
-        //gradientLayer.colors = colors
-        
-        UIGraphicsBeginImageContext(gradientLayer.bounds.size)
-        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image!
-    }
-}
+//extension UIImage {
+//    static func gradientImageWithBounds(bounds: CGRect, colors: [CGColor]) -> UIImage {
+//        let gradientLayer = CAGradientLayer()
+//        //gradientLayer.frame = bounds
+//        //gradientLayer.colors = colors
+//        
+//        UIGraphicsBeginImageContext(gradientLayer.bounds.size)
+//        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+//        let image = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        return image!
+//    }
+//}
