@@ -12,7 +12,7 @@ class TabsMenuVC: ButtonBarPagerTabStripViewController {
 
   
     override func viewDidLoad() {
-        self.settings.style.buttonBarHeight = 60
+        self.settings.style.buttonBarHeight = 40
         loadDesign()
         super.viewDidLoad()
     }

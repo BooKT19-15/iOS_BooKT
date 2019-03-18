@@ -18,31 +18,52 @@ private let Headercut : CGFloat = 0
 
 fileprivate let cellId = "mainCell"
 fileprivate let headerId = "headerId"
-let padding: CGFloat = 0
+let padding: CGFloat = 5
 class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Register cell classes
+        navBar()
+        tabBar()
+        setupCollectionViewLayout()
+        registerCellAndHeaderView()
+    }
+    
+    
+    
+    
+    //MARK:- Set Navbar & TabBar
+    func navBar(){
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-
-        setupCollectionViewLayout()
+    }
     
+    
+    
+    func tabBar(){
+        let adjustForTabbarInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: self.tabBarController!.tabBar.frame.height, right: 0)
+        self.collectionView.contentInset = adjustForTabbarInsets
+        self.collectionView.scrollIndicatorInsets = adjustForTabbarInsets
+    }
+    
+    
+    //MARK:- RegisterCells & Set CollectionLayout
+    func registerCellAndHeaderView(){
         collectionView.register(HomeCell.self, forCellWithReuseIdentifier: "mainCell")
         collectionView.register(UINib(nibName: "HomeCell", bundle: nil), forCellWithReuseIdentifier: "mainCell")
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.contentInsetAdjustmentBehavior = .never
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return .lightContent
-    }
+    
+
     func setupCollectionViewLayout(){
         let layout = StrecheyHeader()
-        //layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
+        layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
         collectionView.collectionViewLayout = layout
     }
    
+   
+    //MARK:- Set Animation For CollectionView
     func transform(cell: UICollectionViewCell){
         let coverFrame = cell.convert(cell.bounds, to: self.view)
         let transfromOffsetY = collectionView.bounds.height * 2/3
@@ -103,13 +124,17 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
         UIApplication.shared.statusBarView?.backgroundColor = color
     }
     
+    
+    
+    
+    
+    
+    //MARK:- Collectionview Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: collectionView.frame.width, height: 340)
+        let height = collectionView.frame.size.height
+        return .init(width: collectionView.frame.width, height: height / 3 + 50)
    }
     
-    
-    
-    // MARK:- Collectionview Delegate
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -120,15 +145,6 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! HomeCell
-//        ////
-//        let layer = CAGradientLayer()
-//        layer.frame = cell.bounds
-//        layer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-//        //layer.locations = [0.0, 1.0]
-//        //cell.layer.addSublayer(layer)
-//        cell.homeImageCell.layer.addSublayer(layer)
-////
-        //cell.layer.cornerRadius = 8.0
         transform(cell: cell)
         return cell
         
@@ -141,7 +157,7 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
         let numberOfColumns: CGFloat =  3
         let width = collectionView.frame.size.width
         let xInsets: CGFloat = 5
-        let cellSpacing: CGFloat = 0
+        let cellSpacing: CGFloat = 5
         
         // Check if it's iPad
         
@@ -153,17 +169,15 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
         }else if leftList.contains(indexPath.row) {
             return CGSize(width: ((width / 2) - (xInsets + cellSpacing)) + 25, height: (width / numberOfColumns) - (xInsets + cellSpacing))
         }else if centerList.contains(indexPath.row) {
-            return CGSize(width: width, height: (width / numberOfColumns) - (xInsets + cellSpacing))
+            return CGSize(width: width - (xInsets + cellSpacing), height: (width / numberOfColumns) - (xInsets + cellSpacing))
         }
-        return CGSize(width: (width) - (xInsets + cellSpacing), height: (width / numberOfColumns) - (xInsets + cellSpacing))
+        return CGSize(width: width - (xInsets + cellSpacing), height: (width / numberOfColumns) - (xInsets + cellSpacing))
         
-    
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NavigationController") as! NavigationController
-               // present.rootViewController = viewController
-        present(viewController, animated: true, completion: nil)
+        performSegue(withIdentifier: "gotoRestaurants", sender: self)
     }
     
     

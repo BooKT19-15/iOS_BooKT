@@ -11,5 +11,9 @@ target 'BooKT' do
 
 pod 'XLPagerTabStrip'
 pod 'MBCircularProgressBar'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
+
 
 end

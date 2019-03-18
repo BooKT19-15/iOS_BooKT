@@ -18,6 +18,7 @@ class RestaurantsTableVC: UITableViewController {
         tableView.rowHeight = 250
         tableView.separatorStyle = .singleLine
         registerCellForIpad()
+        setupNavBar()
     }
     
     
@@ -32,9 +33,11 @@ class RestaurantsTableVC: UITableViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        let color = UIColor.init(red: 1, green: 1, blue: 1, alpha: 0)
+        
+        let color = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)
+        self.navigationController?.navigationBar.backgroundColor = color
         UIApplication.shared.statusBarView?.backgroundColor = color
+        
     }
    
     
@@ -55,12 +58,7 @@ class RestaurantsTableVC: UITableViewController {
 //        }
 //    }
     //MARK:- RegisterCells
-    func registerCellForIphone(){
-        
-        tableView.register(iPhoneRestaurantTableViewCell.self, forCellReuseIdentifier: "iPhoneCellRestaurant")
-        tableView.register(UINib(nibName: "iPhoneRestaurantTableViewCell", bundle: nil), forCellReuseIdentifier:  "iPhoneCellRestaurant")
-        
-    }
+   
     
     
     func registerCellForIpad(){

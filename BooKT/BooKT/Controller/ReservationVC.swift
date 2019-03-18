@@ -25,11 +25,19 @@ class ReservationVC: UIViewController {
             seatsNumberLabel.text = "\(count)"
         }
     }
-    @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
     }
+    
 }
 
-
+// I added all the delegation through the stroyboard for each textField
+extension ReservationVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+}
 
 
