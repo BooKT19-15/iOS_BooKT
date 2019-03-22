@@ -17,6 +17,7 @@ class RestaurantsTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 250
         tableView.separatorStyle = .singleLine
+        tableView.backgroundColor = UIColor(red: 22/255, green: 22/255, blue: 22/255, alpha: 1)
         registerCellForIpad()
         setupNavBar()
     }
@@ -32,15 +33,15 @@ class RestaurantsTableVC: UITableViewController {
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+         let redColor = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)
+         let darkColor = UIColor(red: 22/255, green: 22/255, blue: 22/255, alpha: 0.95)
+         self.navigationController?.navigationBar.tintColor = redColor
         
-        let color = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)
-        self.navigationController?.navigationBar.backgroundColor = color
-        UIApplication.shared.statusBarView?.backgroundColor = color
+         self.navigationController?.navigationBar.backgroundColor = darkColor
+         UIApplication.shared.statusBarView?.backgroundColor = darkColor
         
     }
-   
-    
+  
 //    var parallaxImageHeight: CGFloat {
 //        let maxOffSet = (sqrt(pow(cellHeight, 2) + 4 * parallaxOffSetSpeed * self.tableView.frame.height) - cellHeight) / 2
 //        return maxOffSet + cellHeight
@@ -72,7 +73,7 @@ class RestaurantsTableVC: UITableViewController {
     
     
     
-    
+
     //MARK:- TableView Delegates
 
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -178,7 +178,7 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "gotoRestaurants", sender: self)
-    }
-    
-    
+    } 
 }
+
+

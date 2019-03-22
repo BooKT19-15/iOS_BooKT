@@ -21,6 +21,7 @@ class RestaurantVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = false
+        tableView.backgroundColor = #colorLiteral(red: 0.1129432991, green: 0.1129470244, blue: 0.1129450426, alpha: 1)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 90
@@ -89,11 +90,11 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
         if indexPath.row == 0 {
-            return 220.0
+            return 200.0
         }
         else if indexPath.row == 2 {
-            return 280.0
+            return 160.0
         }
-        return 90.0
+        return 180.0
     }
 }
