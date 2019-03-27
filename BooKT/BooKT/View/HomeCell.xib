@@ -22,9 +22,9 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="one" translatesAutoresizingMaskIntoConstraints="NO" id="cmt-bT-EZT">
                         <rect key="frame" x="0.0" y="0.0" width="247" height="140"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6BR-iN-e1p">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6BR-iN-e1p">
                         <rect key="frame" x="0.0" y="114" width="247" height="26"/>
-                        <color key="backgroundColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="0.65253103595890416" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="26" id="MaA-43-1DQ"/>
                         </constraints>

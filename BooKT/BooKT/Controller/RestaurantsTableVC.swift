@@ -10,63 +10,86 @@ import UIKit
 
 class RestaurantsTableVC: UITableViewController {
    
-
-    //var parallaxOffSetSpeed: CGFloat = 30
+    var restaurantsList = [Restaurants]()
     let cellHeight: CGFloat = 250
+    
+    
+    
+    
+    
+    
+    //MARK:- View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 250
-        tableView.separatorStyle = .singleLine
-        tableView.backgroundColor = UIColor(red: 22/255, green: 22/255, blue: 22/255, alpha: 1)
+        setupTableView()
         registerCellForIpad()
+        //setupNavBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        fetchData()
         setupNavBar()
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setupNavBar()
+    }
     
     
+    //MARK:- Setup TableView
+    func setupTableView() {
+        tableView.rowHeight = 280
+        tableView.separatorStyle = .singleLine
+        tableView.backgroundColor = #colorLiteral(red: 0.1129432991, green: 0.1129470244, blue: 0.1129450426, alpha: 1)
+    }
     
     
     
     //MARK:- Setup view & Setup NavBar
     func setupNavBar(){
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-         let redColor = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)
-         let darkColor = UIColor(red: 22/255, green: 22/255, blue: 22/255, alpha: 0.95)
-         self.navigationController?.navigationBar.tintColor = redColor
-        
-         self.navigationController?.navigationBar.backgroundColor = darkColor
-         UIApplication.shared.statusBarView?.backgroundColor = darkColor
+         navigationController?.setNavigation()
+         UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0.2558506727, alpha: 1)
         
     }
   
-//    var parallaxImageHeight: CGFloat {
-//        let maxOffSet = (sqrt(pow(cellHeight, 2) + 4 * parallaxOffSetSpeed * self.tableView.frame.height) - cellHeight) / 2
-//        return maxOffSet + cellHeight
-//    }
-//
-//    func parallaxOffSet(newOffSSetY: CGFloat, cell: UITableViewCell) -> CGFloat {
-//        return(newOffSSetY - cell.frame.origin.y) / parallaxImageHeight * parallaxOffSetSpeed
-//    }
-//
-//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offSetY = tableView.contentOffset.y
-//        for cell in tableView.visibleCells as! [RestaurantTableCell] {
-//            cell.parallaxTopConstraint.constant = parallaxOffSet(newOffSSetY: offSetY, cell: cell)
-//
-//        }
-//    }
+
+    
     //MARK:- RegisterCells
-   
-    
-    
     func registerCellForIpad(){
         tableView.register(RestaurantTableCell.self, forCellReuseIdentifier: "RestaurantCell")
         tableView.register(UINib(nibName: "RestaurantTableCell", bundle: nil), forCellReuseIdentifier: "RestaurantCell")
         
     }
+    
+    
+    
+    
+    
+    
+    //MARK:- Back Bar Button
+    @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
+        navigationController?.popToRootViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    //MARK:- Fetching Data
+    func fetchData(){
+        DataService.instance.getRestaurantInfo { (returnedRestaurant) in
+            self.restaurantsList = returnedRestaurant
+            self.tableView.reloadData()
+        }
+    }
+    
+    
+    
     
     
     
@@ -80,19 +103,20 @@ class RestaurantsTableVC: UITableViewController {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return restaurantsList.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let restaurant = restaurantsList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantTableCell
-        
+        cell.configureCell(name: restaurant.name, image: restaurant.image, open: restaurant.open, close: restaurant.close, location: restaurant.location, price: restaurant.price)
         return cell
     }
    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //this's a comment that will remind me to dismiss the view using tab bar button
-        //self.dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "gotoRestaurant", sender: self)
     }
     
 }
+
+
+

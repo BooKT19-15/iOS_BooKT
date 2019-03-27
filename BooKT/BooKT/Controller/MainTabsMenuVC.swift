@@ -12,10 +12,10 @@ class MainTabsMenuVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-
+//
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+        setupNavBar()
     }
     
 
@@ -23,4 +23,15 @@ class MainTabsMenuVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    
+    
+    
+    
+    //MARK:- Setup view & Setup NavBar
+    func setupNavBar(){
+        
+        navigationController?.setNavigation()
+        UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0.2558506727, alpha: 1)
+        
+    }
 }

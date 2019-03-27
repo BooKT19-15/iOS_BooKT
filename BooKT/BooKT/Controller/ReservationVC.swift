@@ -10,56 +10,43 @@ import UIKit
 
 class ReservationVC: UIViewController {
     
-    @IBOutlet weak var seatsTextField: UITextField!
-    @IBOutlet weak var sectionTextField: UITextField!
-   
+    
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var sectionsPicker: UIPickerView!
+    @IBOutlet weak var numberOfSeats: UILabel!
     
     
-    var currentTextField = UITextField()
-    var pickerView = UIPickerView()
-    
-    var seatsList = [String]()
     var sectionList = [String]()
+    var counter = 1
     
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTextFiled()
         setupDatePicker()
         setupTimrPicker()
+        setupUI()
+        navigationController?.setNavigation()
+        UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0.2558506727, alpha: 1)
     }
-    
-    
-    
-    
-    
-    
-    
-    //MARK:- Setup TextFiled Lists and Values
-    func setupTextFiled(){
-        seatsTextField.text = "1"
-        sectionTextField.text = "Single"
-        seatsList = ["1","2","3","4","5","6","7","8","9","10"]
+
+    func setupUI(){
+        sectionsPicker.delegate = self
+        sectionsPicker.dataSource = self
         sectionList = ["Single","Family"]
+        numberOfSeats.text = "\(counter)"
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    @IBAction func numberOfSeatsFunction(_ sender: UIButton) {
+        if sender.tag == 101 && counter < 30{
+            counter += 1
+            numberOfSeats.text = "\(counter)"
+        }else if sender.tag == 202  && counter > 1 {
+            counter -= 1
+            numberOfSeats.text = "\(counter)"
+        }
+    }
     
     
     //MARK:- setup TimePicker and DatePicker
@@ -90,9 +77,8 @@ class ReservationVC: UIViewController {
         timePicker.maximumDate = max
     }
     
-
-    @IBAction func cancelButtonPressed(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+    @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
+       dismiss(animated: true, completion: nil)
     }
     
 }
@@ -113,19 +99,6 @@ extension ReservationVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
-    }
-    
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.pickerView.delegate = self
-        self.pickerView.dataSource = self
-        currentTextField = textField
-        
-        if currentTextField == seatsTextField {
-            currentTextField.inputView = pickerView
-        }else if currentTextField == sectionTextField {
-            currentTextField.inputView = pickerView
-        }
     }
 }
 
@@ -156,43 +129,18 @@ extension ReservationVC: UIPickerViewDelegate , UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         pickerView.backgroundColor = #colorLiteral(red: 0.1129432991, green: 0.1129470244, blue: 0.1129450426, alpha: 1)
-        //pickerView.tit
-        if currentTextField == seatsTextField {
-            return seatsList.count
-        }else if currentTextField == sectionTextField {
-            return sectionList.count
-        } else {
-            return 0
-        }
+        return sectionList.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if currentTextField == seatsTextField {
-            return seatsList[row]
-        }else if currentTextField == sectionTextField {
-            return sectionList[row]
-        } else {
-            return ""
-        }
+        return sectionList[row]
     }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if currentTextField == seatsTextField {
-            seatsTextField.text = seatsList[row]
-            self.view.endEditing(true)
-        }else if currentTextField == sectionTextField {
-            sectionTextField.text = sectionList[row]
-            self.view.endEditing(true)
-        }
-    }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//
+//    }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        if currentTextField == seatsTextField {
-            let attributedString = NSAttributedString(string: seatsList[row], attributes: [NSAttributedString.Key.foregroundColor : #colorLiteral(red: 1, green: 0, blue: 0.2558506727, alpha: 1)])
-            return attributedString
-        }else if currentTextField == sectionTextField{
-            let attributedString = NSAttributedString(string: sectionList[row], attributes: [NSAttributedString.Key.foregroundColor : #colorLiteral(red: 1, green: 0, blue: 0.2558506727, alpha: 1)])
-            return attributedString
-        }
-        let attributedString = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor : #colorLiteral(red: 1, green: 0, blue: 0.2558506727, alpha: 1)])
+
+        let attributedString = NSAttributedString(string: sectionList[row], attributes: [NSAttributedString.Key.foregroundColor : #colorLiteral(red: 1, green: 0, blue: 0.2558506727, alpha: 1)])
         return attributedString
     }
 }

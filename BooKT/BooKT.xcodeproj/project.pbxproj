@@ -36,12 +36,19 @@
 		DCDCBBBF22087D870005A759 /* MapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCDCBBBD22087D870005A759 /* MapTableViewCell.xib */; };
 		DCE39F5022300AF00028A31A /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE39F4E22300AF00028A31A /* ReviewTableViewCell.swift */; };
 		DCE39F5122300AF00028A31A /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCE39F4F22300AF00028A31A /* ReviewTableViewCell.xib */; };
+		DCE4417122464F85002F8C56 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4417022464F85002F8C56 /* DataService.swift */; };
+		DCE441732246525E002F8C56 /* Cuisine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE441722246525E002F8C56 /* Cuisine.swift */; };
+		DCE4417522465EC0002F8C56 /* Restaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4417422465EC0002F8C56 /* Restaurants.swift */; };
 		DCE6433B220873A400F24D8F /* MenuiPhoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE64339220873A400F24D8F /* MenuiPhoneTableViewCell.swift */; };
 		DCE6433C220873A400F24D8F /* MenuiPhoneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCE6433A220873A400F24D8F /* MenuiPhoneTableViewCell.xib */; };
 		DCE944872201AACA00839523 /* HomeCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE944862201AACA00839523 /* HomeCollectionVC.swift */; };
 		DCE944892201ABCB00839523 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE944882201ABCB00839523 /* HeaderView.swift */; };
 		DCE9448B2201AC1000839523 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9448A2201AC1000839523 /* Extensions+UIView.swift */; };
 		DCE9448D2201AD6B00839523 /* StrecheyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9448C2201AD6B00839523 /* StrecheyHeader.swift */; };
+		DCF2B393224BDED6006C902D /* seeAllReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF2B391224BDED6006C902D /* seeAllReviews.swift */; };
+		DCF2B394224BDED6006C902D /* seeAllReviews.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCF2B392224BDED6006C902D /* seeAllReviews.xib */; };
+		DCF2B396224BE5CB006C902D /* OffersTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF2B395224BE5CB006C902D /* OffersTableVC.swift */; };
+		DCF2B398224BFF74006C902D /* Navigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF2B397224BFF74006C902D /* Navigation+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,12 +85,19 @@
 		DCDCBBBD22087D870005A759 /* MapTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapTableViewCell.xib; sourceTree = "<group>"; };
 		DCE39F4E22300AF00028A31A /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		DCE39F4F22300AF00028A31A /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
+		DCE4417022464F85002F8C56 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		DCE441722246525E002F8C56 /* Cuisine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cuisine.swift; sourceTree = "<group>"; };
+		DCE4417422465EC0002F8C56 /* Restaurants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurants.swift; sourceTree = "<group>"; };
 		DCE64339220873A400F24D8F /* MenuiPhoneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuiPhoneTableViewCell.swift; path = iPhone/MenuiPhoneTableViewCell.swift; sourceTree = "<group>"; };
 		DCE6433A220873A400F24D8F /* MenuiPhoneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MenuiPhoneTableViewCell.xib; path = iPhone/MenuiPhoneTableViewCell.xib; sourceTree = "<group>"; };
 		DCE944862201AACA00839523 /* HomeCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionVC.swift; sourceTree = "<group>"; };
 		DCE944882201ABCB00839523 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		DCE9448A2201AC1000839523 /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		DCE9448C2201AD6B00839523 /* StrecheyHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrecheyHeader.swift; sourceTree = "<group>"; };
+		DCF2B391224BDED6006C902D /* seeAllReviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seeAllReviews.swift; sourceTree = "<group>"; };
+		DCF2B392224BDED6006C902D /* seeAllReviews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = seeAllReviews.xib; sourceTree = "<group>"; };
+		DCF2B395224BE5CB006C902D /* OffersTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTableVC.swift; sourceTree = "<group>"; };
+		DCF2B397224BFF74006C902D /* Navigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +167,7 @@
 		DCA7CAF321F5B382003FD0FD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DCF2B395224BE5CB006C902D /* OffersTableVC.swift */,
 				DC2241C1223FC16400468F94 /* LoginVC.swift */,
 				DC2241BF223FBC2000468F94 /* SignupVC.swift */,
 				DC4F1C62223FA60500EAE403 /* ProfileVC.swift */,
@@ -176,6 +191,8 @@
 				DCD4F44E2237E4470020C044 /* RestaurantHeaderCardTVCell.swift */,
 				DCD4F4502237E81B0020C044 /* RestaurantReviewCardTVCell.swift */,
 				DCD4F4512237E81B0020C044 /* RestaurantReviewCardTVCell.xib */,
+				DCF2B391224BDED6006C902D /* seeAllReviews.swift */,
+				DCF2B392224BDED6006C902D /* seeAllReviews.xib */,
 				DCE944882201ABCB00839523 /* HeaderView.swift */,
 				DCE9448A2201AC1000839523 /* Extensions+UIView.swift */,
 				DCE9448C2201AD6B00839523 /* StrecheyHeader.swift */,
@@ -189,6 +206,7 @@
 				DC9719DD222ECC56009A56A1 /* RestaurantTableCell.xib */,
 				DCE39F4E22300AF00028A31A /* ReviewTableViewCell.swift */,
 				DCE39F4F22300AF00028A31A /* ReviewTableViewCell.xib */,
+				DCF2B397224BFF74006C902D /* Navigation+Extension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +214,8 @@
 		DCA7CAF521F5B389003FD0FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DCE441722246525E002F8C56 /* Cuisine.swift */,
+				DCE4417422465EC0002F8C56 /* Restaurants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,6 +223,7 @@
 		DCA7CAF621F5B38D003FD0FD /* DataServices */ = {
 			isa = PBXGroup;
 			children = (
+				DCE4417022464F85002F8C56 /* DataService.swift */,
 			);
 			path = DataServices;
 			sourceTree = "<group>";
@@ -269,6 +290,7 @@
 			files = (
 				DC53A8AF21EF32B0009F7607 /* LaunchScreen.storyboard in Resources */,
 				DCDAFEF32201CB1E0044D216 /* HomeCell.xib in Resources */,
+				DCF2B394224BDED6006C902D /* seeAllReviews.xib in Resources */,
 				DC53A8AC21EF32B0009F7607 /* Assets.xcassets in Resources */,
 				DC22F8CC21EF647200D51DCB /* GoogleService-Info.plist in Resources */,
 				DCE6433C220873A400F24D8F /* MenuiPhoneTableViewCell.xib in Resources */,
@@ -349,12 +371,15 @@
 				DC4F1C63223FA60500EAE403 /* ProfileVC.swift in Sources */,
 				DCBCC26F220ACF5D00D9D649 /* ReservationVC.swift in Sources */,
 				DC1BE69D220B4C140091AEE8 /* ConfirmationVC.swift in Sources */,
+				DCE4417122464F85002F8C56 /* DataService.swift in Sources */,
+				DCF2B396224BE5CB006C902D /* OffersTableVC.swift in Sources */,
 				DCE39F5022300AF00028A31A /* ReviewTableViewCell.swift in Sources */,
 				DCDCBBBE22087D870005A759 /* MapTableViewCell.swift in Sources */,
 				DC57BB8221FC869700A48087 /* SearchVC.swift in Sources */,
 				DCBB338C22003275003E5CA3 /* RestaurantsTableVC.swift in Sources */,
 				DC2241C2223FC16400468F94 /* LoginVC.swift in Sources */,
 				DCE6433B220873A400F24D8F /* MenuiPhoneTableViewCell.swift in Sources */,
+				DCF2B398224BFF74006C902D /* Navigation+Extension.swift in Sources */,
 				DC53A8A521EF32AF009F7607 /* AppDelegate.swift in Sources */,
 				DCD4F44F2237E4470020C044 /* RestaurantHeaderCardTVCell.swift in Sources */,
 				DC80E14E221DA40E0035D9E6 /* ReviewTableVC.swift in Sources */,
@@ -365,8 +390,11 @@
 				DCDAFEF22201CB1E0044D216 /* HomeCell.swift in Sources */,
 				DC80E14A221DA1BA0035D9E6 /* TabsMenuVC.swift in Sources */,
 				DC80E14C221DA3310035D9E6 /* MenuTabTableVC.swift in Sources */,
+				DCE441732246525E002F8C56 /* Cuisine.swift in Sources */,
 				DCE9448D2201AD6B00839523 /* StrecheyHeader.swift in Sources */,
 				DC9D70992215839C000CEE87 /* RestaurantVC.swift in Sources */,
+				DCF2B393224BDED6006C902D /* seeAllReviews.swift in Sources */,
+				DCE4417522465EC0002F8C56 /* Restaurants.swift in Sources */,
 				DC9719DE222ECC56009A56A1 /* RestaurantTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

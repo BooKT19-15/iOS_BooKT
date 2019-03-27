@@ -21,15 +21,23 @@ fileprivate let headerId = "headerId"
 let padding: CGFloat = 5
 class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    var cuisineList = [Cuisine]()
     override func viewDidLoad() {
         super.viewDidLoad()
         navBar()
         tabBar()
         setupCollectionViewLayout()
         registerCellAndHeaderView()
+        
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        DataService.instance.getCuisines { (returnedCuisine) in
+            self.cuisineList = returnedCuisine
+            self.collectionView.reloadData()
+        }
+    }
     
     
     //MARK:- Set Navbar & TabBar
@@ -140,11 +148,12 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return cuisineList.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! HomeCell
+        cell.configureCell(cuisineType: cuisineList[indexPath.row].type, cuisineImage: "")
         transform(cell: cell)
         return cell
         
@@ -177,7 +186,8 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "gotoRestaurants", sender: self)
+         performSegue(withIdentifier: "gotoRestaurants", sender: self)
+        //navigationController?.pushViewController(RestaurantsTableVC(), animated: true)
     } 
 }
 

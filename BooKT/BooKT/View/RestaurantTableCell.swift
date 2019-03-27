@@ -11,36 +11,32 @@ import UIKit
 class RestaurantTableCell: UITableViewCell {
 
     @IBOutlet weak var restaurantImage: UIImageView!
-    @IBOutlet weak var parallaxImageHeight: NSLayoutConstraint!
-    @IBOutlet weak var parallaxTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var restaurantName: UILabel!
+    @IBOutlet weak var restaurantLocation: UILabel!
+    @IBOutlet weak var restaurantOpen: UILabel!
+    @IBOutlet weak var restaurantClose: UILabel!
+    //@IBOutlet weak var restaurantPrice: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-     
-//        restaurantImage.clipsToBounds = true 
+        setupUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
-}
-
-
-class RRRCell: UITableViewCell {
-    @IBOutlet weak var restaurantImage: UIImageView!
-    @IBOutlet weak var parallaxImageHeight: NSLayoutConstraint!
-    @IBOutlet weak var parallaxTopConstraint: NSLayoutConstraint!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-         restaurantImage.clipsToBounds = true 
+    func setupUI(){
+        restaurantOpen.adjustsFontSizeToFitWidth = true
+        restaurantClose.adjustsFontSizeToFitWidth = true
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+    func configureCell(name: String,image: String,open: String,close: String,location: String,price: String){
+        restaurantName.text = name
+        restaurantImage.image = UIImage(named: image)
+        restaurantOpen.text = open
+        restaurantClose.text = close
+        restaurantLocation.text = location
+        //restaurantPrice.text = price
     }
 }

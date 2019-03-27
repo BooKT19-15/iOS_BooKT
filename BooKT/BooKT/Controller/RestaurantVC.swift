@@ -30,10 +30,15 @@ class RestaurantVC: UIViewController{
         tableView.contentInsetAdjustmentBehavior = .never
         pageControl.numberOfPages = images.count
         setScrollWithImages()
+        setupNavBar()
     }
 
     
-    
+    //MARK:- Setup view & Setup NavBar
+    func setupNavBar(){
+        navigationController?.setNavigation()
+        UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0.2558506727, alpha: 1)
+    }
     
     func setScrollWithImages(){
         for i in 0..<images.count {
@@ -50,7 +55,22 @@ class RestaurantVC: UIViewController{
             
             tableView.register(MapTableViewCell.self, forCellReuseIdentifier: "mapcCell")
             tableView.register(UINib(nibName: "MapTableViewCell", bundle: nil), forCellReuseIdentifier: "mapcCell")
+            
+            
+            tableView.register(seeAllReviews.self, forCellReuseIdentifier: "gotoAllReviews")
+            tableView.register(UINib(nibName: "seeAllReviews", bundle: nil), forCellReuseIdentifier: "gotoAllReviews")
+
         }
+    }
+    
+  
+    @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
+      //  navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func gotoMenu(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "gotoMenu", sender: self)
     }
 }
 
@@ -69,7 +89,7 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -81,8 +101,10 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "mapcCell", for: indexPath)
             return cell
-        }
-        else {
+        } else if indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "gotoAllReviews", for: indexPath)
+            return cell
+        } else {
             return RestaurantHeaderCardTVCell()
         }
     }
@@ -90,11 +112,19 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
         if indexPath.row == 0 {
-            return 200.0
+            return 230.0
         }
         else if indexPath.row == 2 {
-            return 160.0
+            return 200.0
+        } else if indexPath.row == 3 {
+            return 60.0
         }
-        return 180.0
+        return 150.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 3 {
+         performSegue(withIdentifier: "gotoReviews", sender: self)
+        }
     }
 }

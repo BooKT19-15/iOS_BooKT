@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import XLPagerTabStrip
+
 
 class ReviewTableVC: UITableViewController {
 
@@ -15,7 +15,7 @@ class ReviewTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.register(ReviewTableViewCell.self, forCellReuseIdentifier: "reviewTabCell")
         tableView.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "reviewTabCell")
-        tableView.rowHeight = 130
+        tableView.rowHeight = 95
     }
 
 
@@ -33,15 +33,5 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     return cell
 }
 
-
-
-
 }
 
-
-
-extension ReviewTableVC: IndicatorInfoProvider {
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Review")
-    }
-}

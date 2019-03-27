@@ -17,4 +17,7 @@ class HomeCell: UICollectionViewCell {
         
     }
 
+    func configureCell(cuisineType: String, cuisineImage: String){
+        homeLabelCell.text = cuisineType
+    }
 }

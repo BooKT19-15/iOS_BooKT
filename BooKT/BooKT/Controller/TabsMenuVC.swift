@@ -19,7 +19,7 @@ class TabsMenuVC: ButtonBarPagerTabStripViewController {
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let child_1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuTabTableVC")
-        let child_2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewTableVC")
+        let child_2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OffersTableVC")
         
         return [child_1 , child_2]
     }
