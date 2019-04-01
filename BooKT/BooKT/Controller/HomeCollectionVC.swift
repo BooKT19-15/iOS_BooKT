@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import SVProgressHUD
+
+
 var Headerview : UIView!
 var NewHeaderLayer : CAShapeLayer!
 
@@ -22,20 +25,28 @@ let padding: CGFloat = 5
 class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var cuisineList = [Cuisine]()
+    var cuisine: Cuisine!
     override func viewDidLoad() {
         super.viewDidLoad()
+        SVProgressHUD.show()
         navBar()
         tabBar()
         setupCollectionViewLayout()
         registerCellAndHeaderView()
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        //print("works")
+        //navBar()
+        
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         DataService.instance.getCuisines { (returnedCuisine) in
             self.cuisineList = returnedCuisine
             self.collectionView.reloadData()
+            SVProgressHUD.dismiss()
         }
     }
     
@@ -126,6 +137,7 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
         }
         
     }
+    
     func setNavColor(offset: CGFloat){
         let color = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: offset)
         self.navigationController?.navigationBar.backgroundColor = color
@@ -186,9 +198,17 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-         performSegue(withIdentifier: "gotoRestaurants", sender: self)
-        //navigationController?.pushViewController(RestaurantsTableVC(), animated: true)
-    } 
+        cuisine = cuisineList[indexPath.row]
+        performSegue(withIdentifier: "gotoRestaurants", sender: self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoRestaurants" {
+            let restaurantsVC = segue.destination as! RestaurantsTableVC
+            restaurantsVC.cuisine = cuisine
+        }
+    }
 }
 
 

@@ -7,13 +7,16 @@
 //
 
 import UIKit
-
+import SVProgressHUD
+import SDWebImage
 class RestaurantsTableVC: UITableViewController {
    
+    var cuisine: Cuisine!
+    var restaurant: Restaurants!
     var restaurantsList = [Restaurants]()
     let cellHeight: CGFloat = 250
     
-    
+    var Mainimages: [String]!
     
     
     
@@ -21,6 +24,10 @@ class RestaurantsTableVC: UITableViewController {
     //MARK:- View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        SVProgressHUD.show()
+        self.title = cuisine.type
+        
         setupTableView()
         registerCellForIpad()
         //setupNavBar()
@@ -28,10 +35,20 @@ class RestaurantsTableVC: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        fetchData()
+       
+        if let cuisine = cuisine {
+         fetchData(cuisineType: cuisine.type)
+        }
         setupNavBar()
+        
     }
-    
+    func fetchDataX(id: String){
+        DataService.instance.getRestaurantImages(id: id) { (returnedImages) in
+            self.Mainimages = returnedImages
+            self.performSegue(withIdentifier: "gotoRestaurant", sender: self)
+            SVProgressHUD.dismiss()
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -81,10 +98,13 @@ class RestaurantsTableVC: UITableViewController {
     
     
     //MARK:- Fetching Data
-    func fetchData(){
-        DataService.instance.getRestaurantInfo { (returnedRestaurant) in
+    func fetchData(cuisineType: String){
+        DataService.instance.getRestaurantInfo(cuisineType: cuisineType) { (returnedRestaurant) in
             self.restaurantsList = returnedRestaurant
+            //print(self.restaurantsList[0].image)
             self.tableView.reloadData()
+            SVProgressHUD.dismiss()
+            //self.fetchDataX(id: self.restaurant.id)
         }
     }
     
@@ -106,6 +126,7 @@ class RestaurantsTableVC: UITableViewController {
         return restaurantsList.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //print(restaurantsList[indexPath.row].image)
         let restaurant = restaurantsList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantTableCell
         cell.configureCell(name: restaurant.name, image: restaurant.image, open: restaurant.open, close: restaurant.close, location: restaurant.location, price: restaurant.price)
@@ -113,9 +134,17 @@ class RestaurantsTableVC: UITableViewController {
     }
    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "gotoRestaurant", sender: self)
+        fetchDataX(id: restaurantsList[indexPath.row].id)
+        restaurant = restaurantsList[indexPath.row]
+        SVProgressHUD.show()
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoRestaurant" {
+            let restaurantVC = segue.destination as! RestaurantVC
+            restaurantVC.restaurant = restaurant
+            restaurantVC.images = Mainimages
+        }
+    }
 }
 
 

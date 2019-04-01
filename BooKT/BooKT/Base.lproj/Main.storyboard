@@ -46,18 +46,18 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="X7O-ap-MRQ"/>
                     <connections>
-                        <segue destination="kHY-RJ-OIy" kind="show" identifier="gotoRestaurants" id="ViI-Gh-0ca"/>
+                        <segue destination="0jo-xo-Qr4" kind="show" identifier="gotoRestaurants" id="iCc-LD-FZG"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9AZ-my-mFu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4086.9565217391309" y="-702.45535714285711"/>
         </scene>
-        <!--Restaurants-->
+        <!--Restaurants TableVC-->
         <scene sceneID="HIC-PX-Aob">
             <objects>
                 <tableViewController storyboardIdentifier="RestaurantsTableVC" id="0jo-xo-Qr4" customClass="RestaurantsTableVC" customModule="BooKT" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Restaurants" id="pie-Ob-mXJ">
+                    <navigationItem key="navigationItem" id="pie-Ob-mXJ">
                         <barButtonItem key="leftBarButtonItem" image="backbutton" id="9yw-6a-2Zg">
                             <connections>
                                 <action selector="backButtonPressed:" destination="0jo-xo-Qr4" id="aXR-sk-9Al"/>
@@ -65,12 +65,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="i1s-62-ucB" kind="show" identifier="gotoRestaurant" id="pTu-9B-FKV"/>
+                        <segue destination="KLH-IU-L7Y" kind="show" identifier="gotoRestaurant" id="jR0-Qj-eQJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uC0-3o-wRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6022" y="-702"/>
+            <point key="canvasLocation" x="5199" y="-702"/>
         </scene>
         <!--ConfirmationVC-->
         <scene sceneID="9gD-tn-pTx">
@@ -610,7 +610,7 @@
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrs-o9-i3T">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="94" height="77.5"/>
                                                                                                     <subviews>
-                                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Cusine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eur-3x-joz">
+                                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Cuisine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eur-3x-joz">
                                                                                                             <rect key="frame" x="8" y="8" width="78" height="20.5"/>
                                                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -657,7 +657,7 @@
                                                                                                                 </userDefinedRuntimeAttribute>
                                                                                                             </userDefinedRuntimeAttributes>
                                                                                                             <connections>
-                                                                                                                <segue destination="J12-lz-qFm" kind="show" id="XTg-Zk-hHd"/>
+                                                                                                                <action selector="reserveButtonPressed:" destination="KLH-IU-L7Y" eventType="touchUpInside" id="PbY-rF-EjV"/>
                                                                                                             </connections>
                                                                                                         </button>
                                                                                                     </subviews>
@@ -711,6 +711,12 @@
                                                 <constraint firstAttribute="trailing" secondItem="ftO-9N-Yx1" secondAttribute="trailing" id="X23-wO-4Vd"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="RestaurantWorkHours" destination="9Fj-rW-d6A" id="n5h-q2-CNb"/>
+                                            <outlet property="restaurantCuisine" destination="jZu-8T-FRy" id="svv-uH-IKA"/>
+                                            <outlet property="restaurantLocation" destination="6Gb-e0-zdL" id="ybx-X0-Ldk"/>
+                                            <outlet property="restaurantName" destination="L4K-oc-eMU" id="WBZ-xe-fyc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -746,6 +752,7 @@
                         <outlet property="scrollView" destination="YJL-7O-k0n" id="7wS-sy-RQT"/>
                         <outlet property="tableView" destination="1w8-1e-PLE" id="lne-z2-BMt"/>
                         <segue destination="Bug-ng-fOG" kind="show" identifier="gotoReviews" id="X3M-KD-hg3"/>
+                        <segue destination="UJY-gA-QvB" kind="show" identifier="gotoReserve" id="OiY-b1-Vyx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j2A-Od-8b0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1054,6 +1061,11 @@
                         <viewLayoutGuide key="safeArea" id="a3d-Zl-9fY"/>
                     </view>
                     <navigationItem key="navigationItem" id="4oC-Cu-J1J">
+                        <barButtonItem key="leftBarButtonItem" title="Sign out" id="7pr-gG-xFj">
+                            <connections>
+                                <action selector="signoutButtomPressed:" destination="iQZ-Go-A3J" id="4eg-Ix-nkd"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Sign up" id="CaK-Wh-r40">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -1192,6 +1204,10 @@
                         <viewLayoutGuide key="safeArea" id="fIU-W5-yZc"/>
                     </view>
                     <connections>
+                        <outlet property="email" destination="Lgz-LN-S6O" id="BSI-jg-a20"/>
+                        <outlet property="mobile" destination="y4T-vK-q2i" id="pcZ-7J-1Gx"/>
+                        <outlet property="name" destination="rnV-t2-zG2" id="ii9-qR-DjM"/>
+                        <outlet property="password" destination="Ng0-8r-nQU" id="t1k-4b-140"/>
                         <segue destination="FTt-ob-mCm" kind="show" identifier="gotoLogin" id="mfq-mh-Fwz"/>
                     </connections>
                 </viewController>
@@ -1265,6 +1281,9 @@
                                         <state key="normal" title="Login">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="loginButtonPressed:" destination="FTt-ob-mCm" eventType="touchUpInside" id="RSC-Yq-gop"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4we-Lp-S3a">
                                         <rect key="frame" x="0.0" y="395.5" width="334" height="46.5"/>
@@ -1300,36 +1319,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h91-o7-OER"/>
                     </view>
+                    <connections>
+                        <outlet property="email" destination="CKA-1L-c5d" id="jdk-vs-ZZd"/>
+                        <outlet property="password" destination="XOb-Ma-R7Z" id="fcM-rg-vz8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMW-qx-e2B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4875" y="858"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="8D6-f8-O17">
-            <objects>
-                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="kHY-RJ-OIy" customClass="NavigationController" customModule="BooKT" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vSl-mG-5Zr">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.92156862750000001" green="0.1529411765" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="barTintColor" red="0.92156862750000001" green="0.1529411765" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="0jo-xo-Qr4" kind="relationship" relationship="rootViewController" id="Ars-nm-EIZ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WCf-ys-hvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5089.8550724637689" y="-702.45535714285711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zfw-0g-7jq">
@@ -1358,6 +1355,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YOR-qG-Lyb">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1505,32 +1509,6 @@
             </objects>
             <point key="canvasLocation" x="1976.8115942028987" y="857.8125"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="dxX-rz-Jvs">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="i1s-62-ucB" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="acS-qc-nTY">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.92156862750000001" green="0.1529411765" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="barTintColor" red="0.92156862750000001" green="0.1529411765" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="KLH-IU-L7Y" kind="relationship" relationship="rootViewController" id="YWA-1o-Kui"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xAg-bQ-6zY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7205.7971014492759" y="46.875"/>
-        </scene>
         <!--Reservation-->
         <scene sceneID="RJB-1E-Wt7">
             <objects>
@@ -1540,7 +1518,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaQ-NN-0uy">
-                                <rect key="frame" x="0.0" y="140" width="414" height="1027"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="1035"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4lH-P2-Ov7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1250"/>
@@ -1673,11 +1651,12 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="zfI-6L-DzL">
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="zfI-6L-DzL">
                                                         <rect key="frame" x="0.0" y="35" width="414" height="105"/>
                                                         <date key="date" timeIntervalSinceReferenceDate="575403486.29670596">
                                                             <!--2019-03-27 18:18:06 +0000-->
                                                         </date>
+                                                        <locale key="locale" localeIdentifier="en_GB"/>
                                                     </datePicker>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1845,32 +1824,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u0g-Yk-1uT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="10128.985507246378" y="-780.13392857142856"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="0Cs-FZ-J9G">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J12-lz-qFm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="ANM-CB-lQJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.92156862750000001" green="0.1529411765" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="UJY-gA-QvB" kind="relationship" relationship="rootViewController" id="bda-dn-2Aw"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Qw-ED-eqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="9218.8405797101459" y="-780.13392857142856"/>
         </scene>
     </scenes>
     <resources>

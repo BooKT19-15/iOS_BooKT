@@ -7,19 +7,29 @@
 //
 
 import UIKit
-
+import SDWebImage
+var restaurantID: String!
 class RestaurantVC: UIViewController{
 
    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    let images = ["one",
-                  "one",
-                  "one"]
+    var restaurant: Restaurants!
+    var images: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        restaurantID = restaurant.id 
+        print(images.count)
+//        DataService.instance.getRestaurantImages(id: restaurant.id) { (returnedImage) in
+//            self.images.removeAll()
+//            self.images = returnedImage
+//            print(returnedImage.count)
+//            print(returnedImage[0])
+        
+//        }
+        
         navigationController?.navigationBar.prefersLargeTitles = false
         tableView.backgroundColor = #colorLiteral(red: 0.1129432991, green: 0.1129470244, blue: 0.1129450426, alpha: 1)
         tableView.delegate = self
@@ -28,12 +38,15 @@ class RestaurantVC: UIViewController{
         tableView.separatorStyle = .none
         scrollView.delegate = self
         tableView.contentInsetAdjustmentBehavior = .never
-        pageControl.numberOfPages = images.count
+        
         setScrollWithImages()
         setupNavBar()
     }
 
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+    }
     //MARK:- Setup view & Setup NavBar
     func setupNavBar(){
         navigationController?.setNavigation()
@@ -41,10 +54,13 @@ class RestaurantVC: UIViewController{
     }
     
     func setScrollWithImages(){
+      
+        pageControl.numberOfPages = images.count
         for i in 0..<images.count {
             let imageView = UIImageView()
             imageView.contentMode = .scaleToFill
-            imageView.image = UIImage(named: images[i])
+            imageView.sd_setImage(with: URL(string: images[i]), placeholderImage: UIImage(named: "one"), options:.continueInBackground, completed: nil)
+            //imageView.image = UIImage(named: "one")
             let xPostion = CGFloat(i)*self.view.bounds.size.width
             imageView.frame = CGRect(x: xPostion, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height)
             scrollView.contentSize.width = view.frame.size.width * CGFloat(i+1)
@@ -65,12 +81,16 @@ class RestaurantVC: UIViewController{
     
   
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
-      //  navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
+       // dismiss(animated: true, completion: nil)
     }
     
     @IBAction func gotoMenu(_ sender: UIBarButtonItem) {
+    
         performSegue(withIdentifier: "gotoMenu", sender: self)
+    }
+    @IBAction func reserveButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "gotoReserve", sender: self)
     }
 }
 
@@ -92,8 +112,10 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
         return 4
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCardCell", for: indexPath) as! RestaurantHeaderCardTVCell
+            cell.configureCell(name: restaurant.name, location: restaurant.location, open: restaurant.open, close: restaurant.close, cuisine: "American")
             return cell
         }else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantReviewCell", for: indexPath)
@@ -126,5 +148,14 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 3 {
          performSegue(withIdentifier: "gotoReviews", sender: self)
         }
+        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoReserve"{
+            let reserveVC = segue.destination as! ReservationVC
+            reserveVC.restaurant = restaurant
+        }
+    }
+
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class RestaurantTableCell: UITableViewCell {
 
@@ -33,7 +34,8 @@ class RestaurantTableCell: UITableViewCell {
     
     func configureCell(name: String,image: String,open: String,close: String,location: String,price: String){
         restaurantName.text = name
-        restaurantImage.image = UIImage(named: image)
+        //restaurantImage.image = UIImage(named: image)
+        restaurantImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "one"), options:.continueInBackground, completed: nil)
         restaurantOpen.text = open
         restaurantClose.text = close
         restaurantLocation.text = location

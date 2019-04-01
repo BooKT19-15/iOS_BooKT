@@ -41,6 +41,9 @@ class ProfileVC: UIViewController {
         
         performSegue(withIdentifier: "gotoSignup", sender: self)
     }
+    @IBAction func signoutButtomPressed(_ sender: UIBarButtonItem) {
+        AuthService.instance.signout()
+    }
 }
 
 

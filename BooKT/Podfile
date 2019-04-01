@@ -14,6 +14,7 @@ pod 'MBCircularProgressBar'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
-
+pod 'SDWebImage'
+pod 'SVProgressHUD'
 
 end

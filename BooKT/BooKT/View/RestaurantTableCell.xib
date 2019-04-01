@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="325.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="one" translatesAutoresizingMaskIntoConstraints="NO" id="Pdu-gp-hWM">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pdu-gp-hWM">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="325.5"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
@@ -305,6 +305,5 @@
     </objects>
     <resources>
         <image name="Image-2" width="61" height="37"/>
-        <image name="one" width="3000" height="2250"/>
     </resources>
 </document>

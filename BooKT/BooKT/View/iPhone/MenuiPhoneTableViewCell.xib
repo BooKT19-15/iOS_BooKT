@@ -85,7 +85,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="detail" destination="2Dh-zZ-TGn" id="QlU-9A-Grl"/>
                 <outlet property="menuImage" destination="9kr-K0-1A9" id="2dO-Zn-fvi"/>
+                <outlet property="name" destination="4Uu-56-4Ms" id="hYe-Kk-TCU"/>
+                <outlet property="price" destination="nc1-cx-6DE" id="bbi-SJ-XhT"/>
             </connections>
             <point key="canvasLocation" x="52.799999999999997" y="70.164917541229386"/>
         </tableViewCell>

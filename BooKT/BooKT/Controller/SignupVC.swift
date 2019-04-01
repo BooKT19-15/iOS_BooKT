@@ -10,13 +10,24 @@ import UIKit
 
 class SignupVC: UIViewController {
 
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var mobile: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
 
     @IBAction func registerButtonPressed(_ sender: UIButton) {
-        
+        if name.text != nil && email.text != nil && password.text != nil && mobile.text != nil {
+            AuthService.instance.registerUser(withEmail: email.text!, andPassword: password.text!, andMobile: mobile.text!, name: name.text!) { (success, error) in
+                if error != nil {
+                    print("Problem")
+                }
+            }
+        }
         
     }
     @IBAction func loginButtonPressed(_ sender: UIButton) {

@@ -10,6 +10,11 @@ import UIKit
 
 class RestaurantHeaderCardTVCell: UITableViewCell {
 
+    @IBOutlet weak var restaurantName: UILabel!
+    @IBOutlet weak var restaurantLocation: UILabel!
+    @IBOutlet weak var RestaurantWorkHours: UILabel!
+    @IBOutlet weak var restaurantCuisine: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +26,11 @@ class RestaurantHeaderCardTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configureCell(name: String, location: String, open: String, close: String, cuisine: String){
+        restaurantName.text = name
+        restaurantLocation.text = location
+        restaurantCuisine.text = cuisine
+        RestaurantWorkHours.text = "\(open)  \(close)"
+        restaurantCuisine.text = cuisine
+    }
 }
