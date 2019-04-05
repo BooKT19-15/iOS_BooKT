@@ -17,7 +17,7 @@ class RestaurantVC: UIViewController{
     @IBOutlet weak var pageControl: UIPageControl!
     var restaurant: Restaurants!
     var images: [String]!
-    
+    var sectionList = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         restaurantID = restaurant.id 
@@ -41,6 +41,7 @@ class RestaurantVC: UIViewController{
         
         setScrollWithImages()
         setupNavBar()
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -79,7 +80,16 @@ class RestaurantVC: UIViewController{
         }
     }
     
-  
+    func getSections(){
+//        DataService.instance.getSeats(id: restaurant.id) { (x) in
+//            
+//        }
+        DataService.instance.getSections(id: restaurant.id) { (returedSection) in
+            self.sectionList = returedSection
+            self.performSegue(withIdentifier: "gotoReserve", sender: self)
+        }
+    }
+    
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
        // dismiss(animated: true, completion: nil)
@@ -90,7 +100,7 @@ class RestaurantVC: UIViewController{
         performSegue(withIdentifier: "gotoMenu", sender: self)
     }
     @IBAction func reserveButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "gotoReserve", sender: self)
+        getSections()
     }
 }
 
@@ -155,6 +165,7 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
         if segue.identifier == "gotoReserve"{
             let reserveVC = segue.destination as! ReservationVC
             reserveVC.restaurant = restaurant
+            reserveVC.sections = sectionList
         }
     }
 

@@ -7,23 +7,42 @@
 //
 
 import UIKit
-
+import Firebase
 class ProfileVC: UIViewController {
 
+    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var SignupButton: UIBarButtonItem!
+    @IBOutlet weak var signoutButton: UIBarButtonItem!
+    
+    
+    var user: User!
     let active = ["One","Two","Three","One","Two","Three"]
     let inActive = ["X","Y","Z","X","Y","Z","X","Y","Z","X","Y","Z","X","Y","Z","X","Y","Z"]
     lazy var displayArray = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+        
         tableView.delegate = self
         tableView.dataSource = self
         segmentControl.selectedSegmentIndex = 0
         displayArray = active
         segmentControl.addTarget(self, action: #selector(handleSegmentChange        ), for: .valueChanged)
      
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if let id = Auth.auth().currentUser?.uid {
+            self.SignupButton.isEnabled = false
+            self.signoutButton.isEnabled = true
+            DataService.instance.getUserInfo(uid: id) { (returenUser) in
+                self.user = returenUser
+                self.name.text = self.user.name
+                self.loadViewIfNeeded()
+            }
+        }
     }
     
     @objc func handleSegmentChange(){
@@ -34,8 +53,8 @@ class ProfileVC: UIViewController {
             displayArray = inActive
         }
         tableView.reloadData()
-        let indexPath = IndexPath(row: 0, section: 0)
-        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+//        let indexPath = IndexPath(row: 0, section: 0)
+//        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     @IBAction func signupButtonPressed(_ sender: UIBarButtonItem) {
         
@@ -43,6 +62,9 @@ class ProfileVC: UIViewController {
     }
     @IBAction func signoutButtomPressed(_ sender: UIBarButtonItem) {
         AuthService.instance.signout()
+        SignupButton.isEnabled = true
+        signoutButton.isEnabled = false
+        name.text = ""
     }
 }
 
@@ -54,7 +76,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayArray.count
+        return 0//displayArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

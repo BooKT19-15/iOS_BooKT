@@ -41,6 +41,7 @@ class RestaurantsTableVC: UITableViewController {
         }
         setupNavBar()
         
+        
     }
     func fetchDataX(id: String){
         DataService.instance.getRestaurantImages(id: id) { (returnedImages) in
@@ -48,6 +49,7 @@ class RestaurantsTableVC: UITableViewController {
             self.performSegue(withIdentifier: "gotoRestaurant", sender: self)
             SVProgressHUD.dismiss()
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

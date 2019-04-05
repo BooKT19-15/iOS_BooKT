@@ -1075,7 +1075,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="SignupButton" destination="CaK-Wh-r40" id="Bav-gV-8gC"/>
+                        <outlet property="name" destination="dyC-cA-zBD" id="RZW-7O-Zpa"/>
                         <outlet property="segmentControl" destination="Apr-QS-zFB" id="jP3-Cl-Dwh"/>
+                        <outlet property="signoutButton" destination="7pr-gG-xFj" id="kL3-0C-yeT"/>
                         <outlet property="tableView" destination="JlF-eT-aaX" id="3Ek-bF-abR"/>
                         <segue destination="9TA-ER-910" kind="show" identifier="gotoSignup" id="1Nv-8L-Jbg"/>
                     </connections>
@@ -1742,6 +1744,9 @@
                                                                                 <state key="normal" title="Confirm">
                                                                                     <color key="titleColor" red="0.84817141289999998" green="0.23926332589999999" blue="0.30194154379999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                 </state>
+                                                                                <connections>
+                                                                                    <action selector="confirmButtonPressed:" destination="UJY-gA-QvB" eventType="touchUpInside" id="z5c-CJ-dNQ"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -1815,7 +1820,11 @@
                     </navigationItem>
                     <size key="freeformSize" width="414" height="1250"/>
                     <connections>
+                        <outlet property="additionalInfo" destination="eYs-Z9-4Oa" id="L4i-F1-lnG"/>
                         <outlet property="datePicker" destination="0tz-oW-uFG" id="F86-w8-00S"/>
+                        <outlet property="email" destination="UKZ-p2-eNw" id="eW0-cr-Vmz"/>
+                        <outlet property="mobile" destination="xW7-wh-SXn" id="Dzr-eg-c8q"/>
+                        <outlet property="name" destination="ava-U5-ZVc" id="jXi-A7-6J1"/>
                         <outlet property="numberOfSeats" destination="kVL-TL-9bs" id="DPO-J4-geB"/>
                         <outlet property="sectionsPicker" destination="LUT-iI-wEs" id="uVb-QN-oWv"/>
                         <outlet property="timePicker" destination="zfI-6L-DzL" id="H1P-zW-J9v"/>

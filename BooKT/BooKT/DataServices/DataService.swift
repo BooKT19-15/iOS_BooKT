@@ -17,6 +17,7 @@ class DataService {
     private var _REF_BASE = DB_BASE
     private var _REF_JEDDAH = DB_BASE.child("Country").child("Saudi Arabia").child("cities").child("Jeddah")
     private var _REF_RESTAURANT = DB_BASE.child("Restaurants")
+    //var status_main : Bool!
     
     private var _REF_USERS = DB_BASE.child("Users")
     
@@ -97,6 +98,12 @@ class DataService {
     
     
     
+    
+    
+    
+    
+    
+    //MARK:- GET REVIEWS
     func getReviews(handler: @escaping(_ reviews: UInt) ->()) {
         REF_JEDDAH.child("Cuisine").child("ids").child("American").observe(.value) { (snapshot) in
             let reviewSnapshot = snapshot.childSnapshot(forPath: "reviews")
@@ -106,7 +113,7 @@ class DataService {
     
     
     
-    
+    //MARK: GET RESTAURANT IMAGES
     func getRestaurantImages(id: String, handler: @escaping(_ restaurant: [String]) ->()){
         REF_RESTAURANT.child(id).child("imageList").observe(.value) { (RestaurantSnapshot) in
             print(id)
@@ -124,6 +131,10 @@ class DataService {
     }
     
     
+    
+    
+    
+    //MARK:- GET MENU
     func getMenu(id:String,handler: @escaping(_ menus: [MainMenu]) ->()){
         REF_RESTAURANT.child(id).child("menuItems").observe(.childAdded) { (snapshot) in
             var mainMenu = [MainMenu]()
@@ -157,6 +168,163 @@ class DataService {
     }
     
     
+    
+    
+    
+    
+    
+    
+    //MARK:- GET SECTIONS
+    func getSections(id: String, handler: @escaping(_ sectionList: [String])->()){
+        var sections = [String]()
+        REF_RESTAURANT.child(id).child("restaurantDetails").observe(.value) { (snapshot) in
+            let section = snapshot.childSnapshot(forPath: "sections").value as! String
+            let newString = section
+            
+            if newString.elementsEqual("Single + Family") {
+                sections.append("single")
+                sections.append("family")
+            } else if newString.elementsEqual("Single") {
+                sections.append("single")
+            } else if newString.elementsEqual("Family") {
+                sections.append("family")
+            } else {
+                print("ERROR")
+            }
+            handler(sections)
+        }
+    }
+    
+    //MARK:- GET SEATS
+    func getSeats(id: String, section: String, handler: @escaping(_ seatList: [Int])->()){
+        
+        if section.elementsEqual("family"){
+            REF_RESTAURANT.child(id).child("tableListFamily").observe(.value) { (snapshot) in
+                let name = snapshot.childSnapshot(forPath: "tables").value as! String
+                let fullString = name;
+                let result = fullString.split(separator: ",")
+                let intArray = result.map { Int($0)!}
+                print(intArray)
+                handler(intArray)
+            }
+        }else if section.elementsEqual("single"){
+            REF_RESTAURANT.child(id).child("tableListSingle").observe(.value) { (snapshot) in
+                let name = snapshot.childSnapshot(forPath: "tables").value as! String
+                let fullString = name;
+                let result = fullString.split(separator: ",")
+                let intArray = result.map { Int($0)!}
+                handler(intArray)
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    func checkReservation(id: String,max:String,year:Int,month: Int,day: Int,hour: Int,section: String,seatNumber: Int, user: User, additionalInfo: String, flag: Bool) {
+        DB_BASE.child("Reservation").child(id).child("sections").child(section).child("T\(seatNumber)").child("date").child("\(year)").child("\(month)").child("\(day)").child("\(hour)").observeSingleEvent(of: .value) { (snapshot) in
+            
+            //check if current selected time is full
+            var status = false
+            if Int(snapshot.childrenCount) >= Int(max)! {
+                status = true
+                 print("if", status)
+            }else {
+                status = false
+                print("elseif", status)
+            }
+            
+            // if current selected time is NOT full
+            if !status {
+                //self.checkReservation(id: id, max: max, year: year, month: month, day: day, hour: hour+1, section: section, seatNumber: seatNumber)
+                var status_two = false
+                
+                // check if NEXT hour is full
+                DB_BASE.child("Reservation").child(id).child("sections").child(section).child("T\(seatNumber)").child("date").child("\(year)").child("\(month)").child("\(day)").child("\(hour+1)").observeSingleEvent(of: .value) { (snapshot2) in
+                    
+                    if Int(snapshot2.childrenCount) >= Int(max)! {
+                        status_two = true
+                    }
+                    
+                    // if next hour is NOT full --> RESERVE
+                    if !status_two {
+                        
+                        DB_BASE.child("Reservation").child(id).child("sections").child(section).child("T\(seatNumber)").child("date").child("\(year)").child("\(month)").child("\(day)").child("\(hour)").childByAutoId().updateChildValues(["name":"\(user.name)","mobile":"\(user.mobile)","email":"\(user.email)","month":"\(month)","day":"\(day)","hour":"\(hour)","additional_Info":additionalInfo])
+                        
+                       
+                        DB_BASE.child("Reservation").child(id).child("sections").child(section).child("T\(seatNumber)").child("date").child("\(year)").child("\(month)").child("\(day)").child("\(hour+1)").childByAutoId().updateChildValues(["name":"\(user.name)","mobile":"\(user.mobile)","email":"\(user.email)","month":"\(month)","day":"\(day)","hour":"\(hour)","additional_Info":additionalInfo])
+                        
+                        if flag{
+                            self.setAuthUserProfileReservation(id: id, user: user, year: year, month: month, day: day, hour: hour, section: section, seatNumber: seatNumber, additionalInfo: additionalInfo)
+//                         self.setReservationForAuthUser(id: id, user: user, year: year, month: month, day: day, hour: hour, section: section, seatNumber: seatNumber, additionalInfo: additionalInfo)
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        }
+            
+    
+
+    
+    //MARK:- SET RESERVATION
+    func setReservation(id: String,user: User,year:Int,month: Int,day: Int,hour: Int,section: String,seatNumber: Int,additionalInfo: String){
+        //var max: String = ""
+        DB_BASE.child("Reservation").child(id).child("sections").child("single").child("T\(seatNumber)").observeSingleEvent(of: .value) { (snapshot) in
+            
+            let max = snapshot.childSnapshot(forPath: "max").value as! String
+            self.checkReservation(id: id, max: max, year: year, month: month, day: day, hour: hour, section: section, seatNumber: seatNumber, user: user, additionalInfo: additionalInfo, flag: false)
+    
+            }
+    }
+    
+    
+    func setReservationForAuthUser(id: String,user: User,year:Int,month: Int,day: Int,hour: Int,section: String,seatNumber: Int,additionalInfo: String){
+        //var profile_status = false
+        let uid = Auth.auth().currentUser!.uid
+        //REF_USERS.child("\(uid)").child("reservations").child("active").child("\(id)").observeSingleEvent(of: .value) { (snapshot) in
+            REF_USERS.child("\(uid)").child("reservations").child("active").child("\(id)").observe(.value, with: { (snapshot) in
+                if snapshot.exists() {
+                    
+                    //
+                   
+                }else {
+                    
+                    DB_BASE.child("Reservation").child(id).child("sections").child("single").child("T\(seatNumber)").observeSingleEvent(of: .value) { (snapshot) in
+                        
+                        let max = snapshot.childSnapshot(forPath: "max").value as! String
+                        self.checkReservation(id: id, max: max, year: year, month: month, day: day, hour: hour, section: section, seatNumber: seatNumber, user: user, additionalInfo: additionalInfo, flag: true)
+                        
+                    }
+                }
+            })
+    }
+    
+    func setAuthUserProfileReservation(id: String,user: User,year:Int,month: Int,day: Int,hour: Int,section: String,seatNumber: Int,additionalInfo: String){
+        print("PASS")
+        let uid = Auth.auth().currentUser!.uid
+        REF_USERS.child("\(uid)").child("reservations").child("active").child("\(id)").childByAutoId().updateChildValues(["name":"\(user.name)","mobile":"\(user.mobile)","email":"\(user.email)","month":"\(month)","day":"\(day)","hour":"\(hour)","additional_Info":additionalInfo,"date":"\(month)/\(day)/\(year)"])
+    }
+    
+    
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
 //    func getRestaurantImages22(handler: @escaping(_ restaurant: [String]) ->()){
 //
 //        REF_JEDDAH.child("Cuisine").child("ids").child("French").observe(.childAdded) { (RestaurantSnapshot) in
@@ -179,6 +347,25 @@ class DataService {
     func createDBUser(uid: String, userData: Dictionary<String,Any>){
         REF_USERS.child(uid).child("profile_info").updateChildValues(userData)
     }
+    
+    func getUserInfo(uid: String,handler: @escaping(_ user: User) -> ()){
+        var user: User!
+        REF_USERS.child(uid).child("profile_info").observe(.value) { (snapshot) in
+            let name = snapshot.childSnapshot(forPath: "name").value as! String
+            let mobile = snapshot.childSnapshot(forPath: "mobile").value as! String
+            let email = snapshot.childSnapshot(forPath: "email").value as! String
+            print("NAME:",name,"\nEMAIL",email,"\nMOBILE",mobile)
+            let userObject = User(name: name, email: email, mobile: mobile)
+            user = userObject
+            handler(user)
+        }
+       
+    }
 }
 
 
+struct User {
+    var name: String
+    var email: String
+    var mobile: String
+}
