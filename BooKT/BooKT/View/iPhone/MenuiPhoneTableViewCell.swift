@@ -31,7 +31,7 @@ class MenuiPhoneTableViewCell: UITableViewCell {
        
         self.name.text = name
         self.detail.text = description
-        self.price.text = price
+        self.price.text = "\(price)$"
         menuImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "one"), options: .continueInBackground, completed: nil)
         
     }

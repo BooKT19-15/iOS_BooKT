@@ -34,6 +34,7 @@ class ProfileVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        setNavBar()
         if let id = Auth.auth().currentUser?.uid {
             self.SignupButton.isEnabled = false
             self.signoutButton.isEnabled = true
@@ -45,6 +46,12 @@ class ProfileVC: UIViewController {
         }
     }
     
+    
+    
+    func setNavBar(){
+        navigationController?.setNavigation()
+        UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0.2558506727, alpha: 1)
+    }
     @objc func handleSegmentChange(){
         switch segmentControl.selectedSegmentIndex {
         case 0:

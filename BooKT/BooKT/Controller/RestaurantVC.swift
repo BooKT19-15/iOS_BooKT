@@ -195,6 +195,17 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 2 {
+            guard let url = URL(string: restaurant.location) else {
+                return
+            }
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:]) {_ in }
+            } else {
+                // Fallback on earlier versions
+                UIApplication.shared.openURL(url)
+            }
+        }
         if indexPath.row == 3 {
          performSegue(withIdentifier: "gotoReviews", sender: self)
         }
