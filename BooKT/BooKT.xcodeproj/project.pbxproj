@@ -25,7 +25,7 @@
 		DC80E14C221DA3310035D9E6 /* MenuTabTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80E14B221DA3310035D9E6 /* MenuTabTableVC.swift */; };
 		DC80E14E221DA40E0035D9E6 /* ReviewTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80E14D221DA40E0035D9E6 /* ReviewTableVC.swift */; };
 		DC80E150221DCE3C0035D9E6 /* MainTabsMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80E14F221DCE3C0035D9E6 /* MainTabsMenuVC.swift */; };
-		DC90BD8422538E58001CA391 /* UserReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90BD8322538E58001CA391 /* UserReservation.swift */; };
+		DC90BD8422538E58001CA391 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90BD8322538E58001CA391 /* User.swift */; };
 		DC9719DE222ECC56009A56A1 /* RestaurantTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9719DC222ECC56009A56A1 /* RestaurantTableCell.swift */; };
 		DC9719DF222ECC56009A56A1 /* RestaurantTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9719DD222ECC56009A56A1 /* RestaurantTableCell.xib */; };
 		DC9D70992215839C000CEE87 /* RestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D70982215839C000CEE87 /* RestaurantVC.swift */; };
@@ -79,7 +79,7 @@
 		DC80E14B221DA3310035D9E6 /* MenuTabTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTabTableVC.swift; sourceTree = "<group>"; };
 		DC80E14D221DA40E0035D9E6 /* ReviewTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableVC.swift; sourceTree = "<group>"; };
 		DC80E14F221DCE3C0035D9E6 /* MainTabsMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabsMenuVC.swift; sourceTree = "<group>"; };
-		DC90BD8322538E58001CA391 /* UserReservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReservation.swift; sourceTree = "<group>"; };
+		DC90BD8322538E58001CA391 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DC9719DC222ECC56009A56A1 /* RestaurantTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableCell.swift; sourceTree = "<group>"; };
 		DC9719DD222ECC56009A56A1 /* RestaurantTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableCell.xib; sourceTree = "<group>"; };
 		DC9D70982215839C000CEE87 /* RestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantVC.swift; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 				DCE19BA1224D0D9400D2DF5F /* RestaurantImages.swift */,
 				DC7F3DE3225268A50067D5FC /* MainMenu.swift */,
 				DC7F3DE5225268C90067D5FC /* Menu.swift */,
-				DC90BD8322538E58001CA391 /* UserReservation.swift */,
+				DC90BD8322538E58001CA391 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -391,7 +391,7 @@
 				DCBCC26F220ACF5D00D9D649 /* ReservationVC.swift in Sources */,
 				DC1BE69D220B4C140091AEE8 /* ConfirmationVC.swift in Sources */,
 				DCE4417122464F85002F8C56 /* DataService.swift in Sources */,
-				DC90BD8422538E58001CA391 /* UserReservation.swift in Sources */,
+				DC90BD8422538E58001CA391 /* User.swift in Sources */,
 				DCF2B396224BE5CB006C902D /* OffersTableVC.swift in Sources */,
 				DCE19BA2224D0D9400D2DF5F /* RestaurantImages.swift in Sources */,
 				DCE39F5022300AF00028A31A /* ReviewTableViewCell.swift in Sources */,

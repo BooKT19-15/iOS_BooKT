@@ -5,38 +5,33 @@
 //  Created by Abdualziz Aljuaid on 06/02/2019.
 //  Copyright © 2019 Abdualziz Aljuaid. All rights reserved.
 //
-struct ReservstionInfo {
-    var hour: String
-    var day: String
-    var month: String
-    var year: String
-}
+
+
 import UIKit
 import Firebase
 class ReservationVC: UIViewController {
     
-    
+    //MARK:- User TextFields
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var mobile: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var additionalInfo: UITextField!
     
-    
+    //MARK:- View IBOutlets
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var sectionsPicker: UIPickerView!
     @IBOutlet weak var numberOfSeats: UILabel!
     
-    
+    //MARK:- Properties
     var sectionList = [String]()
     var counter = 0
     var restaurant: Restaurants!
     var sections: [String]!
     var seats: [Int]!
-    //var userReservation: UserReservation!
     var user: User!
     
-    //CALENDAR
+    //MARK:- CALENDAR Properties
     let calendar = Calendar.current
     var year: Int!
     var month: Int!
@@ -51,36 +46,19 @@ class ReservationVC: UIViewController {
         getSeats(section: section)
         setupDatePicker()
         setupTimrPicker()
-        
-        
-//        userReservation.section = selectedValue
-        navigationController?.setNavigation()
-        UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0.2558506727, alpha: 1)
-        
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        if let id = Auth.auth().currentUser?.uid {
-            DataService.instance.getUserInfo(uid: id) { (returenUser) in
-                self.user = returenUser
-                self.setTextFiledData()
-                self.loadViewIfNeeded()
-            }
-        }
+        fetchingData()
     }
     
     
     func getSeats(section: String){
         DataService.instance.getSeats(id: restaurant.id, section: section) { (returnedSeats) in
             self.seats = returnedSeats
-           // self.counter = self.seats[0]
-           self.numberOfSeats.text = "\(self.seats[0])"
+            self.numberOfSeats.text = "\(self.seats[0])"
         }
-    }
-    func setTextFiledData(){
-        name.text = user.name
-        email.text = user.email
-        mobile.text = user.mobile
     }
     
     func setupUI(){
@@ -116,50 +94,38 @@ class ReservationVC: UIViewController {
         datePicker.setValue(false, forKeyPath: "highlightsToday")
         let twoMonths: TimeInterval = 60 * 24 * 60 * 60
         let today = Date()
+        
         datePicker.minimumDate = today
         let twoMonthsFromToday = today.addingTimeInterval(twoMonths)
         datePicker.maximumDate = twoMonthsFromToday
-        //let dateFormatter = DateFormatter()
-        //let strDate = dateFormatter.string(from: datePicker.date)
+        
+        
         let calendar = Calendar.current
         day = calendar.component(.day, from: datePicker.date)
         month = calendar.component(.month, from: datePicker.date)
         year = calendar.component(.year, from: datePicker.date)
-        print(month,"MONTH\n",day,"DAY\n",year,"YEAR")
+       
         datePicker.addTarget(self, action: #selector(handleDateSelection(_:)), for: .valueChanged)
-        //print(datePicker.date)
         
     }
     
     @objc func handleDateSelection(_ sender: UIDatePicker){
-        //let currentDate = Date()
-        let formatter = DateFormatter()
-        formatter.timeStyle = .none
-        formatter.dateStyle = .short
-        //let month = formatter.string(from: sender.date)
-        ///
+        
         let calendar = Calendar.current
         day = calendar.component(.day, from: sender.date)
         month = calendar.component(.month, from: sender.date)
         year = calendar.component(.year, from: sender.date)
-        print(month,"MONTH\n",day,"DAY\n",year,"YEAR")
-//        calendar.component(.year, from: sender.date)
-//        calendar.component(.day, from: sender.date)
-        ///
-        //let x = month.index(, offsetBy: <#T##Int#>)
-       // print(month,"MONTHHHHHHH")
-       // let monthNumbner = month.prefix(1)
-       // print(monthNumbner,"LET X")
+
         setupTimrPicker()
-        print(sender.date)
     }
     func getTimeIntervalForDate()->(min : Date, max : Date){
         
         let close = restaurant.close.prefix(2)
         let open = restaurant.open.prefix(2)
+        let closeForUser = Int(close)
         let today = Calendar.current.isDateInToday(datePicker.date)
-        hours = Int(close)
-        print("HOUR!!!!!!!!!!!!!",hours)
+        hours = closeForUser! - 2
+       
         
         let calendar = Calendar.current
         let hour = Calendar.current.component(.hour, from: Date())
@@ -167,7 +133,7 @@ class ReservationVC: UIViewController {
         
         // if today set time
         if today {
-            minDateComponent.hour = hour
+            minDateComponent.hour = hour + 1
         }else {
             minDateComponent.hour = Int(open)
         }
@@ -179,7 +145,7 @@ class ReservationVC: UIViewController {
         print(" min date : \(formatter.string(from: minDate!))")
         
         var maxDateComponent = calendar.dateComponents([.hour], from: Date())
-        maxDateComponent.hour = (Int(close)) //EndTime
+        maxDateComponent.hour = hours!//EndTime
         
         
         
@@ -191,20 +157,13 @@ class ReservationVC: UIViewController {
         return (minDate!,maxDate!)
     }
     func setupTimrPicker(){
-        print("PASSING")
+        
         timePicker.datePickerMode = .time
         let color = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: 1)
         timePicker.setValue(color, forKeyPath: "textColor")
         timePicker.setValue(false, forKeyPath: "highlightsToday")
         
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .short
-        dateFormatter.dateStyle = .none
-
-        dateFormatter.dateFormat =  "HH:mm"
-        let mySelectedDate = dateFormatter.string(from: timePicker.date)
-        print(mySelectedDate,"FROM HERE!!!")
         let dates = getTimeIntervalForDate()
 
         timePicker.maximumDate = dates.max
@@ -216,52 +175,197 @@ class ReservationVC: UIViewController {
 
     }
     @objc func handleTimeSelection(_ sender: UIDatePicker){
-        
-//        sender.datePickerMode = .time
-//        sender.locale = Locale(identifier: "en_UK")
-//        //let currentTime = Date()
-//        let formatter = DateFormatter()
-//        formatter.timeStyle = .short
-//        formatter.dateStyle = .none
-//        let hour = formatter.string(from: sender.date)
-//
-//        print(hour, "HOUR")
-        let myDateFormatter: DateFormatter = DateFormatter()
-        myDateFormatter.dateFormat = "HH:mm"
-        
-        // get the date string applied date format
         hours = calendar.component(.hour, from: timePicker.date)
         print("HOUR!!!!!!!!!!!!!",hours)
-        let mySelectedDate = myDateFormatter.string(from: sender.date)
-        print(mySelectedDate)
-  
-
-        
-    }
-    @IBAction func confirmButtonPressed(_ sender: UIButton) {
-        setUserResrevation()
-        print(seats[counter])
-        if Auth.auth().currentUser?.uid != nil {
-            DataService.instance.setReservationForAuthUser(id: restaurant.id, user: user, year: year, month: month, day: day, hour: hours, section: section, seatNumber: seats[counter], additionalInfo: additionalInfo.text ?? "")
-        }else {
-            DataService.instance.setReservation(id: restaurant.id, user: user, year: year, month: month, day: day, hour: hours, section: section,seatNumber: seats[counter], additionalInfo: additionalInfo.text ?? "")            
-        }
-        
     }
     
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //MARK:- Confirm Button
+    @IBAction func confirmButtonPressed(_ sender: UIButton) {
+        sender.isEnabled = false
+        setUserResrevation()
+        sender.isEnabled = true
+    }
+    
+    
+    
+    
+    
+    
+    
+    //MARK:- Set Reservation
+    func setMainReservation(){
+        if Auth.auth().currentUser?.uid != nil {
+            setMainReservationForAuthUser()
+        }else {
+            setMainReservationForUnAuthUser()
+        }
+    }
+    
+    
+    
+    //MARK- Set uset reservation info
+    func setUserResrevation() {
+        
+        if name.text != "" && email.text != "" && mobile.text != "" {
+            let newUser = User(name: name.text!, email: email.text!, mobile: mobile.text!)
+            user = newUser
+            setTextFiledData()
+            setMainReservation()
+        }
+        if name.text == "" && email.text == "" && mobile.text == "" {
+            alert(title:"Empty", message: "Please make sure to fill your info")
+        }
+    }
+    func setTextFiledData(){
+        name.text = user.name
+        email.text = user.email
+        mobile.text = user.mobile
+    }
+    
+    
+    
+    //MARK:- Alert
+    func alert(title: String,message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    //MARK:- Fetching Data
+    func fetchingData(){
+        if let id = Auth.auth().currentUser?.uid {
+            DataService.instance.getUserInfo(uid: id) { (returenUser) in
+                self.user = returenUser
+                self.setTextFiledData()
+                self.loadViewIfNeeded()
+            }
+        }
+    }
+    
+    
+    
+    
+    //MARK:- Upload Data
+    func setMainReservationForAuthUser(){
+//        DataService.instance.setReservationForAuthUser(id: restaurant.id, user: user, year: year, month: month, day: day, hour: hours, section: section, seatNumber: seats[counter], additionalInfo: additionalInfo.text ?? "")
+        
+        setReservation(id: restaurant.id, user: user, year: year, month: month, day: day, hour: hours, section: section, seatNumber: seats[counter], additionalInfo: additionalInfo.text ?? "")
+    }
+    
+    
+    func setMainReservationForUnAuthUser(){
+//        DataService.instance.setReservation(id: restaurant.id, user: user, year: year, month: month, day: day, hour: hours, section: section,seatNumber: seats[counter], additionalInfo: additionalInfo.text ?? "")
+        setReservation(id: restaurant.id, user: user, year: year, month: month, day: day, hour: hours, section: section, seatNumber: seats[counter], additionalInfo: additionalInfo.text ?? "")
+    }
+    
+    
+    
 @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
        navigationController?.popViewController(animated: true)
     }
     
-    func setUserResrevation() {
-        
-        if name.text != nil && email.text != nil && mobile.text != nil {
-            let newUser = User(name: name.text!, email: email.text!, mobile: mobile.text!)
-            user = newUser
-            setTextFiledData()
+    
+    //MARK:- Reservation Functions
+    func checkReservation(id: String,max:String,year:Int,month: Int,day: Int,hour: Int,section: String,seatNumber: Int, user: User, additionalInfo: String, flag: Bool) {
+        DB_BASE.child("Reservation").child(id).child("sections").child(section).child("T\(seatNumber)").child("date").child("\(year)").child("\(month)").child("\(day)").child("\(hour)").observeSingleEvent(of: .value) { (snapshot) in
+            
+            //check if current selected time is full
+            var status = false
+            if Int(snapshot.childrenCount) >= Int(max)! {
+                status = true
+                self.alert(title: "No Reservation", message:"Either the time you chose is already reserved or you already have reservation in this restaurant")
+                print("if", status)
+            }else {
+                status = false
+                print("elseif", status)
+            }
+            
+            // if current selected time is NOT full
+            if !status {
+                
+                var status_two = false
+                
+                // check if NEXT hour is full
+                DB_BASE.child("Reservation").child(id).child("sections").child(section).child("T\(seatNumber)").child("date").child("\(year)").child("\(month)").child("\(day)").child("\(hour+1)").observeSingleEvent(of: .value) { (snapshot2) in
+                    
+                    if Int(snapshot2.childrenCount) >= Int(max)! {
+                        status_two = true
+                    }
+                    
+                    // if next hour is NOT full --> RESERVE
+                    if !status_two {
+                        
+                        DB_BASE.child("Reservation").child(id).child("sections").child(section).child("T\(seatNumber)").child("date").child("\(year)").child("\(month)").child("\(day)").child("\(hour)").childByAutoId().updateChildValues(["name":"\(user.name)","mobile":"\(user.mobile)","email":"\(user.email)","month":"\(month)","day":"\(day)","hour":"\(hour)","additional_Info":additionalInfo])
+                        
+                        
+                        DB_BASE.child("Reservation").child(id).child("sections").child(section).child("T\(seatNumber)").child("date").child("\(year)").child("\(month)").child("\(day)").child("\(hour+1)").childByAutoId().updateChildValues(["name":"\(user.name)","mobile":"\(user.mobile)","email":"\(user.email)","month":"\(month)","day":"\(day)","hour":"\(hour)","additional_Info":additionalInfo])
+                        
+                        self.alert(title: "Done", message: "your reservation is completed")
+                        if flag{
+                            self.setAuthUserProfileReservation(id: id, user: user, year: year, month: month, day: day, hour: hour, section: section, seatNumber: seatNumber, additionalInfo: additionalInfo)
+                        }
+                    }
+                    
+                }
+                
+            }
+            
         }
     }
+    
+    
+    func setReservation(id: String,user: User,year:Int,month: Int,day: Int,hour: Int,section: String,seatNumber: Int,additionalInfo: String){
+        DB_BASE.child("Reservation").child(id).child("sections").child("single").child("T\(seatNumber)").observeSingleEvent(of: .value) { (snapshot) in
+            
+            let max = snapshot.childSnapshot(forPath: "max").value as! String
+            self.checkReservation(id: id, max: max, year: year, month: month, day: day, hour: hour, section: section, seatNumber: seatNumber, user: user, additionalInfo: additionalInfo, flag: false)
+            
+        }
+    }
+    
+    
+    func setReservationForAuthUser(id: String,user: User,year:Int,month: Int,day: Int,hour: Int,section: String,seatNumber: Int,additionalInfo: String){
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        DataService.instance.REF_USERS.child("\(uid)").child("reservations").child("active").child("\(id)").observe(.value, with: { (snapshot) in
+            if snapshot.exists() {
+                
+                
+                
+            }else {
+                
+                DB_BASE.child("Reservation").child(id).child("sections").child("single").child("T\(seatNumber)").observeSingleEvent(of: .value) { (snapshot) in
+                    
+                    let max = snapshot.childSnapshot(forPath: "max").value as! String
+                    self.checkReservation(id: id, max: max, year: year, month: month, day: day, hour: hour, section: section, seatNumber: seatNumber, user: user, additionalInfo: additionalInfo, flag: true)
+                    
+                }
+            }
+        })
+    }
+    
+    func setAuthUserProfileReservation(id: String,user: User,year:Int,month: Int,day: Int,hour: Int,section: String,seatNumber: Int,additionalInfo: String){
+        print("PASS")
+        let uid = Auth.auth().currentUser!.uid
+        DataService.instance.REF_USERS.child("\(uid)").child("reservations").child("active").child("\(id)").childByAutoId().updateChildValues(["name":"\(user.name)","mobile":"\(user.mobile)","email":"\(user.email)","month":"\(month)","day":"\(day)","hour":"\(hour)","additional_Info":additionalInfo,"date":"\(month)/\(day)/\(year)"])
+    }
+    
     
 }
 
@@ -272,15 +376,21 @@ class ReservationVC: UIViewController {
 
 
 
-extension Date {
-    func dateStringWith(strFormat: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = Calendar.current.timeZone
-        dateFormatter.locale = Calendar.current.locale
-        dateFormatter.dateFormat = strFormat
-        return dateFormatter.string(from: self)
-    }
-}
+//extension Date {
+//    func dateStringWith(strFormat: String) -> String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.timeZone = Calendar.current.timeZone
+//        dateFormatter.locale = Calendar.current.locale
+//        dateFormatter.dateFormat = strFormat
+//        return dateFormatter.string(from: self)
+//    }
+//}
+
+
+
+
+
+
 
 // I added all the delegation through the stroyboard for each textField
 //MARK:- TextFiled Delegates

@@ -10,22 +10,20 @@ import UIKit
 import SVProgressHUD
 
 
-var Headerview : UIView!
-var NewHeaderLayer : CAShapeLayer!
 
-private let Headerheight : CGFloat = 230
-private let Headercut : CGFloat = 0
-
-
-
-
-fileprivate let cellId = "mainCell"
 fileprivate let headerId = "headerId"
 let padding: CGFloat = 5
+
 class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var cuisineList = [Cuisine]()
     var cuisine: Cuisine!
+    
+    
+    
+    
+    
+    //MARK:- View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.show()
@@ -35,20 +33,15 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
         registerCellAndHeaderView()
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        //print("works")
-        //navBar()
-        
+        fetchData()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        DataService.instance.getCuisines { (returnedCuisine) in
-            self.cuisineList = returnedCuisine
-            self.collectionView.reloadData()
-            SVProgressHUD.dismiss()
-        }
-    }
+    
+    
+    
+    
     
     
     //MARK:- Set Navbar & TabBar
@@ -142,6 +135,19 @@ class HomeCollectionVC: UICollectionViewController, UICollectionViewDelegateFlow
         let color = UIColor(red: 235/255, green: 39/255, blue: 72/255, alpha: offset)
         self.navigationController?.navigationBar.backgroundColor = color
         UIApplication.shared.statusBarView?.backgroundColor = color
+    }
+    
+    
+    
+    
+    
+    //MARK:- fetch Data
+    func fetchData(){
+        DataService.instance.getCuisines { (returnedCuisine) in
+            self.cuisineList = returnedCuisine
+            self.collectionView.reloadData()
+            SVProgressHUD.dismiss()
+        }
     }
     
     

@@ -29,7 +29,7 @@ class RestaurantsTableVC: UITableViewController {
         self.title = cuisine.type
         
         setupTableView()
-        registerCellForIpad()
+        registerCell()
         //setupNavBar()
     }
     
@@ -37,18 +37,10 @@ class RestaurantsTableVC: UITableViewController {
         super.viewDidAppear(true)
        
         if let cuisine = cuisine {
-         fetchData(cuisineType: cuisine.type)
+         fetchingRestaurants(cuisineType: cuisine.type)
         }
         setupNavBar()
         
-        
-    }
-    func fetchDataX(id: String){
-        DataService.instance.getRestaurantImages(id: id) { (returnedImages) in
-            self.Mainimages = returnedImages
-            self.performSegue(withIdentifier: "gotoRestaurant", sender: self)
-            SVProgressHUD.dismiss()
-        }
         
     }
     
@@ -78,40 +70,47 @@ class RestaurantsTableVC: UITableViewController {
 
     
     //MARK:- RegisterCells
-    func registerCellForIpad(){
+    func registerCell(){
         tableView.register(RestaurantTableCell.self, forCellReuseIdentifier: "RestaurantCell")
         tableView.register(UINib(nibName: "RestaurantTableCell", bundle: nil), forCellReuseIdentifier: "RestaurantCell")
         
     }
     
     
-    
-    
-    
-    
     //MARK:- Back Bar Button
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
         navigationController?.popToRootViewController(animated: true)
-        //dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    
     
     
     
     
     
     //MARK:- Fetching Data
-    func fetchData(cuisineType: String){
-        DataService.instance.getRestaurantInfo(cuisineType: cuisineType) { (returnedRestaurant) in
-            self.restaurantsList = returnedRestaurant
-            //print(self.restaurantsList[0].image)
+    
+    func fetchingRestaurants(cuisineType: String){
+        DataService.instance.getRestaurantInfo(cuisineType: cuisineType) { (returnedRestaurants) in
+            self.restaurantsList = returnedRestaurants
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
-            //self.fetchDataX(id: self.restaurant.id)
         }
     }
     
     
     
+    
+    func fetchRestaurantImages(id: String){
+        DataService.instance.getRestaurantImages(id: id) { (returnedImages) in
+            self.Mainimages = returnedImages
+            self.performSegue(withIdentifier: "gotoRestaurant", sender: self)
+            SVProgressHUD.dismiss()
+        }
+        
+    }
     
     
     
@@ -136,7 +135,7 @@ class RestaurantsTableVC: UITableViewController {
     }
    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        fetchDataX(id: restaurantsList[indexPath.row].id)
+        fetchRestaurantImages(id: restaurantsList[indexPath.row].id)
         restaurant = restaurantsList[indexPath.row]
         SVProgressHUD.show()
     }
@@ -145,6 +144,7 @@ class RestaurantsTableVC: UITableViewController {
             let restaurantVC = segue.destination as! RestaurantVC
             restaurantVC.restaurant = restaurant
             restaurantVC.images = Mainimages
+            restaurantVC.cuisine = cuisine.type
         }
     }
 }
