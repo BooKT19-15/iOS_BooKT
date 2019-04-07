@@ -202,7 +202,7 @@ class DataService {
                 let tables = snapshot.childSnapshot(forPath: "tables").value as! String
                 let fullString = tables;
                 let result = fullString.split(separator: ",")
-                let intArray = result.map { Int($0)!}
+                let intArray = result.map { Int($0) ?? 1}
                 print(intArray)
                 handler(intArray.sorted())
             }
@@ -212,7 +212,8 @@ class DataService {
                 let fullString = tables;
                 let result = fullString.split(separator: ",")
                 print(result)
-                let intArray = result.map { Int($0)!}
+                let intArray = result.map { Int($0) ?? 1}
+                print(intArray)
                 handler(intArray.sorted())
             }
         }
